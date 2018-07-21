@@ -32,5 +32,5 @@ MM is developed in C# using Visual Studio 2015.  The soloution (ModMaker.sln) co
 * WarHammmer - A standalone app that uses LibModMaker to configure and launch the SDK and Hammer to enable an easier start to mapping for a specific mod.
 * ModMakerTests - Some basic experimentation with automated testing and samples of various file formats.
 
-###Help the Project
+### Help the Project
 Even if you are not a programmer or an artist you *can* help this project, read CONTRIBUTION.md to find out how.
