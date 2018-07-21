@@ -1,0 +1,154 @@
+Apps
+{
+	215
+	{
+		game	"Source SDK Base 2006"
+		sdkversion	2
+		engine	2006
+		gameexe	"{0}half-life 2/hl2.exe"
+		supress 1
+	}
+	218
+	{
+		game	"Source SDK Base 2007"
+		sdkversion	3
+		engine	2007
+		gameexe	"{0}source sdk base 2007/hl2.exe"
+		supress 1
+	}
+	220
+	{
+		game	"Half-Life 2"
+		sdkversion	4
+		engine	2009
+		gameexe	"{0}half-life 2/hl2.exe"
+	}
+	240
+	{
+		game	"Counter-Strike: Source"
+		sdkversion	5
+		engine	2009
+		gameexe	""
+	}
+	280
+	{
+		game	"Half-Life: Source"
+		sdkversion	2
+		engine	2006
+		gameexe	""
+	}
+	300
+	{
+		game	"Day of Defeat: Source"
+		sdkversion	5
+		engine	2009
+		gameexe	""
+	}
+	320
+	{
+		game	"Half-Life 2: Deathmatch"
+		sdkversion	2
+		engine	2006
+		gameexe	""
+	}
+	321
+	{
+		game	"Half-Life 2: Deathmatch"
+		sdkversion	2
+		engine	2006
+		gameexe	""
+	}
+	340
+	{
+		game	"Half-Life 2: Lost Coast"
+		sdkversion	3
+		engine	2007
+		gameexe	""
+	}
+	360
+	{
+		game	"Half-Life Deathmatch: Source"
+		sdkversion	3
+		engine	2007
+		gameexe	""
+	}
+	380
+	{
+		game	"Half-Life 2: Episode One"
+		sdkversion	4
+		engine	2009
+		gameexe	""
+	}
+	400
+	{
+		game	Portal
+		sdkversion	4
+		engine	2009
+		gameexe	""
+	}
+	420
+	{
+		game	"Half-Life 2: Episode Two"
+		sdkversion	4
+		engine	2009
+		gameexe	"{1}half-life 2/hl2.exe"
+	}
+	440
+	{
+		game	"Team Fortress 2"
+		sdkversion	5
+		engine	2009
+		gameexe	""
+	}
+	500
+	{
+		game	"Left 4 Dead"
+		sdkversion	4
+		engine	2009
+		gameexe	""
+	}
+	550
+	{
+		game	"Left 4 Dead 2"
+		sdkversion	4
+		engine	2009
+		gameexe	""
+	}
+	620
+	{
+		game	"Portal 2"
+		sdkversion	4
+		engine	2009
+		gameexe	""
+	}
+	630
+	{
+		game	"Alien Swarm"
+		sdkversion	4
+		engine	2009
+		gameexe	""
+	}
+	1800
+	{
+		game	"Counter-Strike: Global Offensive"
+		sdkversion	5
+		engine	2009
+		gameexe	""
+	}
+	243730
+	{
+		game	"Source SDK Base Singleplayer 2013"
+		sdkversion	6
+		engine	2013
+		gameexe	"{1}Source SDK Base 2013 Singleplayer/hl2.exe"
+		supress 1
+	}
+	243750
+	{
+		game	"Source SDK Base Multiplayer 2013"
+		sdkversion	7
+		engine	2013
+		gameexe	"{1}Source SDK Base 2013 Multiplayer/hl2.exe"
+		supress 1
+	}
+}

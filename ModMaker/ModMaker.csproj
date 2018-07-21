@@ -1,0 +1,483 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E3BD9110-0662-4E6F-9BA6-0C61C3DCA0CF}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ModMaker</RootNamespace>
+    <AssemblyName>ModMaker</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\ModMaker2014.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Datamodel.NET">
+      <HintPath>..\..\ModMaster\ModMaster\bin\Release\Datamodel.NET.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Microsoft.VisualBasic.Compatibility" />
+    <Reference Include="SevenZipSharp">
+      <HintPath>..\..\ModMaster\ModMaster\bin\Release\SevenZipSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="TargaImage">
+      <HintPath>..\..\ModMaster\LibModMaker\bin\Release\TargaImage.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Forms\SMDtoQCForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SMDtoQCForm.Designer.cs">
+      <DependentUpon>SMDtoQCForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FGD\FGD_ChoicesControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\FGD\FGD_ChoicesControl.Designer.cs">
+      <DependentUpon>FGD_ChoicesControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FGD\FGD_FlagControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\FGD\FGD_FlagControl.Designer.cs">
+      <DependentUpon>FGD_FlagControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FGD\FGD_IOControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\FGD\FGD_IOControl.Designer.cs">
+      <DependentUpon>FGD_IOControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FGD\FGD_PropertyControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\FGD\FGD_PropertyControl.Designer.cs">
+      <DependentUpon>FGD_PropertyControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FGD\FGD_WidgetControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\FGD\FGD_WidgetControl.Designer.cs">
+      <DependentUpon>FGD_WidgetControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\KeyBindControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\KeyBindControl.Designer.cs">
+      <DependentUpon>KeyBindControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ModView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ModView.Designer.cs">
+      <DependentUpon>ModView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TextureDataControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\TextureDataControl.Designer.cs">
+      <DependentUpon>TextureDataControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TextureDataEditorControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\TextureDataEditorControl.Designer.cs">
+      <DependentUpon>TextureDataEditorControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\WeaponControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\WeaponControl.Designer.cs">
+      <DependentUpon>WeaponControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\WeaponSoundPickerControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\WeaponSoundPickerControl.Designer.cs">
+      <DependentUpon>WeaponSoundPickerControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Logic\CPP_generators\CPlusPlus.cs" />
+    <Compile Include="Logic\CPP_generators\EntityScriptGenerator.cs" />
+    <Compile Include="Logic\CPP_generators\VGUI_ScriptGenerator.cs" />
+    <Compile Include="Logic\CPP_generators\WeaponScriptGenerator.cs" />
+    <Compile Include="Forms\FolderDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FolderDialog.Designer.cs">
+      <DependentUpon>FolderDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\AboutForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AboutForm.Designer.cs">
+      <DependentUpon>AboutForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\AdvancedStartupForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AdvancedStartupForm.Designer.cs">
+      <DependentUpon>AdvancedStartupForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ChaptersForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ChaptersForm.Designer.cs">
+      <DependentUpon>ChaptersForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ConsoleProcessMonitorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ConsoleProcessMonitorForm.Designer.cs">
+      <DependentUpon>ConsoleProcessMonitorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FGDForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FGDForm.Designer.cs">
+      <DependentUpon>FGDForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FGDChoicesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FGDChoicesForm.Designer.cs">
+      <DependentUpon>FGDChoicesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\GameInfoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\GameInfoForm.Designer.cs">
+      <DependentUpon>GameInfoForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\InstallerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\InstallerForm.Designer.cs">
+      <DependentUpon>InstallerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\KeyBindingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\KeyBindingForm.Designer.cs">
+      <DependentUpon>KeyBindingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\LightsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\LightsForm.Designer.cs">
+      <DependentUpon>LightsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\LocalForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\LocalForm.Designer.cs">
+      <DependentUpon>LocalForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\NewEntityForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\NewEntityForm.Designer.cs">
+      <DependentUpon>NewEntityForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\NewModForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\NewModForm.Designer.cs">
+      <DependentUpon>NewModForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\NewModProgressForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\NewModProgressForm.Designer.cs">
+      <DependentUpon>NewModProgressForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\OptionsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\OptionsForm.Designer.cs">
+      <DependentUpon>OptionsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ParticleToolForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ParticleToolForm.Designer.cs">
+      <DependentUpon>ParticleToolForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ResEditorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ResEditorForm.Designer.cs">
+      <DependentUpon>ResEditorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SteamInfoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SteamInfoForm.Designer.cs">
+      <DependentUpon>SteamInfoForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\TextureDataform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\TextureDataform.Designer.cs">
+      <DependentUpon>TextureDataform.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\WeaponsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\WeaponsForm.Designer.cs">
+      <DependentUpon>WeaponsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ZipForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ZipForm.Designer.cs">
+      <DependentUpon>ZipForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Logic\InstallScriptGenerator.cs" />
+    <Compile Include="Logic\MakeModWizard.cs" />
+    <Compile Include="Logic\ModAwareCompiler.cs" />
+    <Compile Include="Logic\Obj.cs" />
+    <Compile Include="Logic\ObjToSMD.cs" />
+    <Compile Include="Logic\PanelRectangle.cs" />
+    <Compile Include="Logic\ShortCutIcon.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tools\ChapterTool.cs" />
+    <Compile Include="Tools\CleanupTool.cs" />
+    <Compile Include="Tools\CompilerTool.cs" />
+    <Compile Include="Tools\FacePoserTool.cs" />
+    <Compile Include="Tools\FGD_Tool.cs" />
+    <Compile Include="Tools\HammerTool.cs" />
+    <Compile Include="Tools\HitBoxFix.cs" />
+    <Compile Include="Tools\InstallScriptTool.cs" />
+    <Compile Include="Tools\iTool.cs" />
+    <Compile Include="Tools\KeyBindingsTool.cs" />
+    <Compile Include="Tools\LightTool.cs" />
+    <Compile Include="Tools\LocalizationTool.cs" />
+    <Compile Include="Tools\MapBuilderTool.cs" />
+    <Compile Include="Tools\ModelViewerTool.cs" />
+    <Compile Include="Tools\ParticleTool.cs" />
+    <Compile Include="Tools\ScriptSoundsTool.cs" />
+    <Compile Include="Tools\SDKInstallTool.cs" />
+    <Compile Include="Tools\SMD2QC_Tool.cs" />
+    <Compile Include="Tools\SourceSDKSetupTool.cs" />
+    <Compile Include="Tools\SourceSDKTool.cs" />
+    <Compile Include="Tools\VGUI_RES_EditTool.cs" />
+    <Compile Include="Tools\VPKPackerTool.cs" />
+    <Compile Include="Tools\WeaponsTool.cs" />
+    <Compile Include="Tools\ZipPatchTool.cs" />
+    <EmbeddedResource Include="Controls\ModView.resx">
+      <DependentUpon>ModView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\WeaponControl.resx">
+      <DependentUpon>WeaponControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\WeaponSoundPickerControl.resx">
+      <DependentUpon>WeaponSoundPickerControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AboutForm.resx">
+      <DependentUpon>AboutForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ConsoleProcessMonitorForm.resx">
+      <DependentUpon>ConsoleProcessMonitorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FGDForm.resx">
+      <DependentUpon>FGDForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\InstallerForm.resx">
+      <DependentUpon>InstallerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\KeyBindingForm.resx">
+      <DependentUpon>KeyBindingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\LightsForm.resx">
+      <DependentUpon>LightsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\LocalForm.resx">
+      <DependentUpon>LocalForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\NewEntityForm.resx">
+      <DependentUpon>NewEntityForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\NewModForm.resx">
+      <DependentUpon>NewModForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\NewModProgressForm.resx">
+      <DependentUpon>NewModProgressForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\OptionsForm.resx">
+      <DependentUpon>OptionsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ParticleToolForm.resx">
+      <DependentUpon>ParticleToolForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ResEditorForm.resx">
+      <DependentUpon>ResEditorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\WeaponsForm.resx">
+      <DependentUpon>WeaponsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ZipForm.resx">
+      <DependentUpon>ZipForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SMDtoQCForm.resx">
+      <DependentUpon>SMDtoQCForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LibModMaker\LibModMaker.csproj">
+      <Project>{cb8a16df-34f8-4103-8df1-895a9a3e3670}</Project>
+      <Name>LibModMaker</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ModMaker2014.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Chapter2014.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Clean2014.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Keys2014.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Light2014.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Localization2014.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Sound2014.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Weapon2014.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\orange-install.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\modern-install-full.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FormRunHS.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Refresh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\computer.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Folder_Closed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Folder_Open.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Hard_Drive.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="7z.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="7z64.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Options\apps.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Options\Cleansweep.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Options\FileType.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Options\mods.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Options\tools.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Options\vgui_controls.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

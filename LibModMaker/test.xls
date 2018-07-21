@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<html>
+  <body>
+    <table>
+      <tr>
+        <th>Key</th>
+        <th>Value</th>
+      </tr>
+      <tr>
+        <td>Key</td>
+        <td>Value</td>
+      </tr>
+    </table>
+  </body>
+</html>

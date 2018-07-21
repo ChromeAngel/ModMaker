@@ -1,0 +1,236 @@
+﻿vgui_controls {
+	panel {
+		properties {
+			fieldName {
+				type "text"
+				comment "Unique name of the control within it's container."
+			}
+			xpos {
+				type "int"
+				comment "Horizontal offset from the left (by default) of the parent panel. Prefix with C to center or R to right align."
+			}
+			ypos {
+				type "int"
+				comment "Vertical offset from the top (by default) of the parent panel. Prefix with C to center."
+			}
+			zpos {
+				type "int"
+				comment "Depth of the panel. Higher panels are drawn over lower ones. Higher numbers = Higher."
+			}
+			wide {
+				type "int"
+				comment "Width of the control.  Prefix with F to fill the remaining space to the right of XPOS"
+			}
+			tall {
+				type "int"
+				comment "Height of the control."
+			}
+			visible {
+				type "bool"
+				comment "Make the control and it's sub-controls visible/hidden."
+			}
+			enabled {
+				type "bool"
+				comment "Enable/disable the behaviour of the control"
+			}
+			tabPosition {
+				type "int"
+				comment "Order in which this control should be navigated within it's container.  Lower values will be navigated to first."
+			}
+			tooltiptext {
+				type "text"
+				comment "Tooltip text to show when you hover over this control."
+			}
+			paintbackground {
+				type "bool"
+				comment "enable/disable painting the background of this control."
+			}
+			paintborder {
+				type "bool"
+				comment "enable/disable painting the border of this control."
+			}
+			border {
+				type "text"
+				comment "border style name from clientscheme.res."
+			}
+			fgcolor_override {
+				type "color"
+				comment "Specify the foreground color for this control.  Overrides the default from clientscheme.res."
+			}
+			bgcolor_override {
+				type "color"
+				comment "Specify the background color for this control.  Overrides the default from clientscheme.res."
+			}
+			proportionalToParent {
+				type "bool"
+				comment "scale/align with respect to my parent panel rather than the screen"
+			}
+		}
+	}
+	label {
+		inherits "panel"
+		properties {
+			labelText {
+				type "text"
+				comment "Text to display on the label.  Use hash prefixed translation tokens to lookup the text from your translation files. Surround with percent signs to create variable translation tokens."
+			}
+			textAlignment {
+				type "options"
+				comment "Where to position the text within the label"
+				options {
+					1 north-west
+					2 north
+					3 north-east
+					4 west
+					5 center
+					6 east
+					7 south-west
+					8 south
+					9 south-east
+				}
+			}
+			associate {
+				type "text"
+				comment "Indicates another control that this is a label for.  Clicking on this will set focus on the other."
+			}
+			dulltext {
+				type "bool"
+				comment "Draw the text as dull/dim."
+			}
+			brighttext {
+				type "bool"
+				comment "Draw the text as bright/light."
+			}
+			font {
+				type "text"
+				comment "Font name from SourceScheme.res"
+			}
+			wrap {
+				type "bool"
+				comment "Text should wrap around if the label is not wide enough to display it on one line."
+			}
+			centerwrapwrap {
+				type "bool"
+				comment "Text should wrap around if the label is not wide enough to display it on one line."
+			}
+			textinsetx {
+				type "int"
+				comment "Additional horizontal offset space from whichever side it is aligned."
+			}
+			textinsety {
+				type "int"
+				comment "Additional vertical offset space from whichever side it is aligned."
+			}
+		}
+	}
+	button {
+		inherits "label"
+		properties {
+			command {
+				type "text"
+				comment "Command to call OnCommand with when activated."
+			}
+			default {
+				type "bool"
+				comment "Activates this panel when Enter is pressed.  Only one panel may have this set."
+			}
+			selected {
+				type "bool"
+				comment "Indicates this panel is in it's selected state."
+			}
+			sound_armed {
+				type "text"
+				comment "Sound to make when hovered over."
+			}
+			sound_depressed {
+				type "text"
+				comment "Sound to make when pressed."
+			}
+			sound_released {
+				type "text"
+				comment "Sound to make when released."
+			}
+		}
+	}
+	imagepanel {
+		inherits "panel"
+		properties {
+			scaleImage {
+				type "bool"
+				comment "scale the image to the size of this panel"
+			}
+			scaleAmount {
+				type "float"
+				comment "How much the image should scale."
+			}
+			tileImage {
+				type "bool"
+				comment "should the image tile within this panel"
+			}
+			tileHorizontally {
+				type "bool"
+				comment "should the image tile horizontally within this panel"
+			}
+			tileVertically {
+				type "bool"
+				comment "should the image tile vertically within this panel"
+			}
+			image {
+				type "text"
+				comment "Path to a .VMT file relative to the /materials/vgui folder"
+			}
+			fillcolor {
+				type "color"
+				comment  "Background color behind the image."
+			}
+			border {
+				type "text"
+				comment "Name of the border color from the scheme"
+			}
+		}
+	}
+	editablepanel {
+		inherits "panel"
+	}
+	frame {
+		inherits "editablepanel"
+		properties {
+			title {
+				type "text"
+				comment "Title of the frame."
+			}
+			title_font {
+				type "text"
+				comment "Font the title of the frame will use."
+			}
+			clientinsetx_override {
+				type "int"
+				comment "Default horizontal offset from the left side of the panel."
+			}
+			infocus_bgcolor_override {
+				type "color"
+				comment "Background color of the panel when it is in focus."
+			}
+			outoffocus_bgcolor_override {
+				type "color"
+				comment "Background color of the panel when it is out of focus."
+			}
+			titlebarbgcolor_override {
+				type "color"
+				comment "Background color of the title bar when it is in focus."
+			}
+			titlebardisabledbgcolor_override {
+				type "color"
+				comment "Background color of the title bar when it is out of focus."
+			}
+			titlebarfgcolor_override {
+				type "color"
+				comment "Foreground color of the title bar when it is in focus."
+			}
+			titlebardisabledfgcolor_override {
+				type "color"
+				comment "Foreground color of the title bar when it is out of focus."
+			}
+		}
+	}
+}

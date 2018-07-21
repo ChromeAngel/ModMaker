@@ -1,0 +1,56 @@
+"GameInfo"
+{
+	game	"Exterminatus - Beta v5.51"
+	title	""
+	type multiplayer_only
+	nomodels 1
+	nohimodel 1
+	nocrosshair 1
+	developer	"Rival Species Team"
+	developer_url	"http://www.40ksource.com"
+	manual		"http://www.40ksource.com/common/wiki_manual"
+	icon "ex_installed"
+	hidden_maps
+	{
+		"test_speakers"		1
+		"test_hardware"		1
+	}
+
+
+	FileSystem
+	{
+		SteamAppId				218		// This will mount all the GCFs we need (215=Source Base SDK, 240=CS:S, 220=HL2, 320=HL2DM).
+//Was 320
+//Was 215 at version 0.89
+//Was 218 at version 0.91
+		ToolsAppId				211		// Tools will load this (ie: source SDK caches) to get things like materials\debug, materials\editor, etc.
+		AppId					218		// Un-borking valves fuckup 24/12/05
+		
+		//
+		// The code that loads this file automatically does a few things here:
+		//
+		// 1. For each "Game" search path, it adds a "GameBin" path, in <dir>\bin
+		// 2. For each "Game" search path, it adds another "Game" path in front of it with _<langage> at the end.
+		//    For example: c:\hl2\cstrike on a french machine would get a c:\hl2\cstrike_french path added to it.
+		// 3. For the first "Game" search path, it adds a search path called "MOD".
+		// 4. For the first "Game" search path, it adds a search path called "DEFAULT_WRITE_PATH".
+		//
+
+		//
+		// Search paths are relative to the base directory, which is where hl2.exe is found.
+		//
+		// |gameinfo_path| points at the directory where gameinfo.txt is.
+		// We always want to mount that directory relative to gameinfo.txt, so
+		// people can mount stuff in c:\mymod, and the main game resources are in
+		// someplace like c:\program files\valve\steam\steamapps\half-life 2.
+		//
+		SearchPaths
+		{
+			Game				|gameinfo_path|.
+			Game				hl2mp
+			Game				ep2
+			Game				episodic
+			Game				hl2
+		}
+	}
+}

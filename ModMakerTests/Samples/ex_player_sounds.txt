@@ -1,0 +1,471 @@
+//
+//
+// NOTE:  AUTOMATICALLY GENERATED FILE, ANY HAND EDITED COMMENTS WILL BE LOST!!!
+// NOTE:  AUTOMATICALLY GENERATED FILE, ANY HAND EDITED COMMENTS WILL BE LOST!!!
+// NOTE:  AUTOMATICALLY GENERATED FILE, ANY HAND EDITED COMMENTS WILL BE LOST!!!
+//
+// VOL_NORM		1.0f
+//
+//-----------------------------------------------------------------------------
+// common attenuation values
+//-----------------------------------------------------------------------------
+//
+// DON'T USE THESE - USE SNDLVL_ INSTEAD!!!
+//	ATTN_NONE		0.0f	
+//	ATTN_NORM		0.8f
+//	ATTN_IDLE		2.0f
+//	ATTN_STATIC		1.25f 
+//	ATTN_RICOCHET	1.5f
+//	ATTN_GUNFIRE	0.27f
+//
+//	SNDLVL_NONE		= 0,
+//	SNDLVL_25dB		= 25,
+//	SNDLVL_30dB		= 30,
+//	SNDLVL_35dB		= 35,
+//	SNDLVL_40dB		= 40,
+//	SNDLVL_45dB		= 45,
+//	SNDLVL_50dB		= 50,	= 3.9
+//	SNDLVL_55dB		= 55,	= 3.0
+//	SNDLVL_IDLE		= 60,	= 2.0
+//	SNDLVL_TALKING		= 60,	= 2.0
+//	SNDLVL_60dB		= 60,	= 2.0
+//	SNDLVL_65dB		= 65,	= 1.5
+//	SNDLVL_STATIC		= 66,	= 1.25
+//	SNDLVL_70dB		= 70,	= 1.0
+//	SNDLVL_NORM		= 75,
+//	SNDLVL_75dB		= 75,	= 0.8
+//	SNDLVL_80dB		= 80,	= 0.7
+//	SNDLVL_85dB		= 85,	= 0.6
+//	SNDLVL_90dB		= 90,	= 0.5
+//	SNDLVL_95dB		= 95,
+//	SNDLVL_100dB	= 100,	= 0.4
+//	SNDLVL_105dB	= 105,
+//	SNDLVL_120dB	= 120,
+//	SNDLVL_130dB	= 130,
+//	SNDLVL_GUNFIRE	= 140, = 0.27
+//	SNDLVL_140dB	= 140,	= 0.2
+//	SNDLVL_150dB	= 150,	= 0.2
+//
+
+//Marines
+
+"EX_Player_Marine.FootstepLeft"
+{
+	"channel"		"CHAN_BODY"
+	"volume"		"0.600000"
+	"pitch"			"95, 105"
+
+	"soundlevel"	"SNDLVL_NORM"
+
+	"rndwave"
+	{
+		"wave"	"player/footsteps/concrete1.wav"
+		"wave"	"player/footsteps/concrete2.wav"
+	}
+}
+
+"EX_Player_Marine.FootstepRight"
+{
+	"channel"		"CHAN_BODY"
+	"volume"		"0.600000"
+	"pitch"			"95, 105"
+
+	"soundlevel"	"SNDLVL_NORM"
+
+	"rndwave"
+	{
+		"wave"	"player/footsteps/concrete3.wav"
+		"wave"	"player/footsteps/concrete4.wav"
+	}
+}
+
+"EX_Player_Marine.RunFootstepLeft"
+{
+	"channel"		"CHAN_BODY"
+	"volume"		"0.2" 
+	"pitch"			"95, 105"
+
+	"soundlevel"	"SNDLVL_NORM"
+
+	"rndwave"
+	{
+		"wave"	"player/marine_foot_04.wav"
+		"wave"	"player/marine_foot_06.wav"
+		"wave"	"player/marine_foot_07.wav"
+		"wave"	"player/marine_foot_08.wav"
+	}
+}
+
+"EX_Player_Marine.RunFootstepRight"
+{
+	"channel"		"CHAN_BODY"
+	"volume"		"0.2"
+	"pitch"			"95, 105"
+
+	"soundlevel"	"SNDLVL_NORM"
+
+	"rndwave"
+	{
+		"wave"	"player/marine_foot_04.wav"
+		"wave"	"player/marine_foot_06.wav"
+		"wave"	"player/marine_foot_07.wav"
+		"wave"	"player/marine_foot_08.wav"
+	}
+}
+
+
+
+"EX_Player_Marine.die"
+{
+	"channel"		"CHAN_BODY"
+	"volume"		"VOL_NORM"
+	"pitch"			"PITCH_NORM"
+
+	"soundlevel"	"SNDLVL_NORM"
+
+	"rndwave"
+	{
+		"wave"	"*player/marine_die1.wav"
+		"wave"	"*player/marine_die2.wav"
+		"wave"	"*player/marine_die3.wav"
+		"wave"	"*player/marine_die4.wav"
+		"wave"	"*player/marine_die5.wav"
+
+//		"wave"	"*vo/npc/male01/pain01.wav"
+//		"wave"	"*vo/npc/male01/pain02.wav"
+//		"wave"	"*vo/npc/male01/pain03.wav"
+//		"wave"	"*vo/npc/male01/pain04.wav"
+//		"wave"	"*vo/npc/male01/pain05.wav"
+//		"wave"	"*vo/npc/male01/pain06.wav"
+//		"wave"	"*vo/npc/male01/pain07.wav"
+//		"wave"	"*vo/npc/male01/pain08.wav"
+//		"wave"	"*vo/npc/male01/pain09.wav"
+	}
+}
+
+"EX_Player_Marine.fall"
+{
+	"channel"		"CHAN_BODY"
+	"volume"		"VOL_NORM"
+	"pitch"			"PITCH_NORM"
+
+	"soundlevel"	"SNDLVL_NORM"
+
+	"rndwave"
+	{
+
+		"wave"	"player/marine_fall.wav"
+	}
+}
+
+//Zoanthrope
+"EX_Player_Thrope.FootstepLeft"
+{
+	"channel"		"CHAN_BODY"
+	"volume"		"0.000001"
+	"pitch"			"95, 105"
+
+	"soundlevel"	"SNDLVL_NONE"
+	"wave"	"player/footsteps/concrete1.wav"
+}
+
+"EX_Player_Thrope.FootstepRight"
+{
+	"channel"	"CHAN_BODY"
+	"volume"	"0.000001"
+	"pitch"		"95, 105"
+
+	"soundlevel"	"SNDLVL_NONE"
+	"wave"		"player/footsteps/concrete3.wav"
+}
+
+"EX_Player_Thrope.RunFootstepLeft"
+{
+	"channel"		"CHAN_BODY"
+	"volume"		"0.000001"
+	"pitch"			"95, 105"
+
+	"soundlevel"	"SNDLVL_NONE"
+	"wave"	"player/thrope_step.wav"
+}
+
+"EX_Player_Thrope.RunFootstepRight"
+{
+	"channel"		"CHAN_BODY"
+	"volume"		"0.000001"
+	"pitch"			"95, 105"
+
+	"soundlevel"	"SNDLVL_NONE"
+	"wave"	"player/thrope_step.wav"
+
+}
+
+"EX_Player_Thrope.die"
+{
+	"channel"		"CHAN_BODY"
+	"volume"		"VOL_NORM"
+	"pitch"			"PITCH_NORM"
+
+	"soundlevel"	"SNDLVL_NORM"
+	"wave"	"player/synapse_died.wav"
+}
+
+//Lictor
+
+"EX_Player_Lictor.Cloak"
+{
+	"channel"		"CHAN_BODY"
+	"volume"		"1.000000"
+	"pitch"			"95, 105"
+	"soundlevel"		"SNDLVL_NORM"
+	"wave"			"player/lictor_cloak.wav"
+}
+
+"EX_Player_Lictor.RunFootstepLeft"
+{
+	"channel"		"CHAN_BODY"
+	"volume"		"0.400000"
+	"pitch"			"95, 105"
+
+	"soundlevel"	"SNDLVL_25dB"
+
+	"rndwave"
+	{
+		//"wave"	"player/synapse_step.wav"
+		"wave"	"player/tyranid_foot_07.wav"
+		"wave"	"player/tyranid_foot_07b.wav"
+		"wave"	"player/tyranid_foot_07c.wav"
+		"wave"	"player/tyranid_foot_07d.wav"
+		"wave"	"player/tyranid_foot_07e.wav"
+		"wave"	"player/tyranid_foot_07g.wav"
+		"wave"	"player/tyranid_foot_07h.wav"
+	}
+}
+
+"EX_Player_Lictor.RunFootstepRight"
+{
+	"channel"		"CHAN_BODY"
+	"volume"		"0.400000"
+	"pitch"			"95, 105"
+
+	"soundlevel"	"SNDLVL_25dB"
+
+	"rndwave"
+	{
+		//"wave"	"player/synapse_step.wav"
+		"wave"	"player/tyranid_foot_07.wav"
+		"wave"	"player/tyranid_foot_07b.wav"
+		"wave"	"player/tyranid_foot_07c.wav"
+		"wave"	"player/tyranid_foot_07d.wav"
+		"wave"	"player/tyranid_foot_07e.wav"
+		"wave"	"player/tyranid_foot_07g.wav"
+		"wave"	"player/tyranid_foot_07h.wav"
+	}
+}
+
+"EX_Player_Lictor.die"
+{
+	"channel"		"CHAN_BODY"
+	"volume"		"VOL_NORM"
+	"pitch"			"PITCH_NORM"
+
+	"soundlevel"	"SNDLVL_NORM"
+	"wave"	"player/lictor_death.wav"
+}
+
+//Carnifex
+
+"EX_Player_Carnifex.RunFootstepLeft"
+{
+	"channel"		"CHAN_BODY"
+	"volume"		"1.0"
+	"pitch"			"95, 105"
+
+	"soundlevel"	"SNDLVL_NORM"
+
+	"rndwave"
+	{
+		"wave"	 "player/BIG Tyranid.wav"
+	}
+}
+
+"EX_Player_Carnifex.RunFootstepRight"
+{
+	"channel"		"CHAN_BODY"
+	"volume"		"1.0"
+	"pitch"			"95, 105"
+
+	"soundlevel"	"SNDLVL_100dB"
+
+	"rndwave"
+	{
+		"wave"	"player/BIG Tyranid.wav"
+	}
+}
+
+"EX_Player_Carnifex.pain"
+{
+	"channel"		"CHAN_AUTO"
+	"volume"		"VOL_NORM"
+	"pitch"			"PITCH_NORM"
+
+	"soundlevel"	"SNDLVL_NORM"
+
+	"rndwave"
+	{
+		"wave"	"player/carnifex_fall.wav"
+	}
+}
+
+"EX_Player_Carnifex.die"
+{
+	"channel"		"CHAN_BODY"
+	"volume"		"VOL_NORM"
+	"pitch"			"PITCH_NORM"
+
+	"soundlevel"	"SNDLVL_NORM"
+
+	"rndwave"
+	{
+		"wave"	"player/carnifex_death.wav"
+	}
+}
+
+//Other Synapse Creatures
+
+"EX_Player_Synapse.FootstepLeft"
+{
+	"channel"		"CHAN_BODY"
+	"volume"		"1.0"
+	"pitch"			"90, 100"
+
+	"soundlevel"	"SNDLVL_NORM"
+
+	"rndwave"
+	{
+		//"wave"	"npc/antlion_guard/foot_light1.wav"
+		//"wave"	"npc/antlion_guard/foot_light1.wav"
+		"wave"	"player/tyranid_foot_07.wav"
+		"wave"	"player/tyranid_foot_07b.wav"
+		"wave"	"player/tyranid_foot_07c.wav"
+		"wave"	"player/tyranid_foot_07d.wav"
+		"wave"	"player/tyranid_foot_07e.wav"
+		"wave"	"player/tyranid_foot_07g.wav"
+		"wave"	"player/tyranid_foot_07h.wav"
+	}
+}
+
+"EX_Player_Synapse.FootstepRight"
+{
+	"channel"		"CHAN_BODY"
+	"volume"		"1.0"
+	"pitch"			"90, 100"
+
+	"soundlevel"	"SNDLVL_NORM"
+
+	"rndwave"
+	{
+		//"wave"	"npc/antlion_guard/foot_light2.wav"
+		//"wave"	"npc/antlion_guard/foot_light2.wav"
+		"wave"	"player/tyranid_foot_07.wav"
+		"wave"	"player/tyranid_foot_07b.wav"
+		"wave"	"player/tyranid_foot_07c.wav"
+		"wave"	"player/tyranid_foot_07d.wav"
+		"wave"	"player/tyranid_foot_07e.wav"
+		"wave"	"player/tyranid_foot_07g.wav"
+		"wave"	"player/tyranid_foot_07h.wav"
+	}
+}
+
+"EX_Player_Synapse.RunFootstepLeft"
+{
+	"channel"		"CHAN_BODY"
+	"volume"		"0.2"
+	"pitch"			"90, 100"
+
+	"soundlevel"	"SNDLVL_70db"
+
+	"rndwave"
+	{
+		//"wave"	"player/tyranid_foot_06.wav"
+		"wave"	"player/tyranid_foot_07.wav"
+		"wave"	"player/tyranid_foot_07b.wav"
+		"wave"	"player/tyranid_foot_07c.wav"
+		"wave"	"player/tyranid_foot_07d.wav"
+		"wave"	"player/tyranid_foot_07e.wav"
+		"wave"	"player/tyranid_foot_07g.wav"
+		"wave"	"player/tyranid_foot_07h.wav"
+	}
+}
+
+"EX_Player_Synapse.RunFootstepRight"
+{
+	"channel"		"CHAN_BODY"
+	"volume"		"0.2"
+	"pitch"			"90, 100"
+
+	"soundlevel"	"SNDLVL_70db"
+
+	"rndwave"
+	{
+		//"wave"	"player/tyranid_foot_06.wav"
+		"wave"	"player/tyranid_foot_07.wav"
+		"wave"	"player/tyranid_foot_07b.wav"
+		"wave"	"player/tyranid_foot_07c.wav"
+		"wave"	"player/tyranid_foot_07d.wav"
+		"wave"	"player/tyranid_foot_07e.wav"
+		"wave"	"player/tyranid_foot_07g.wav"
+		"wave"	"player/tyranid_foot_07h.wav"
+	}
+}
+
+
+
+"EX_Player_Synapse.die"
+{
+	"channel"		"CHAN_BODY"
+	"volume"		"VOL_NORM"
+	"pitch"			"PITCH_NORM"
+
+	"soundlevel"	"SNDLVL_NORM"
+	"wave"	"player/synapse_died.wav"
+}
+
+
+"EX_Player_Tranid.pain"
+{
+	"channel"		"CHAN_AUTO"
+	"volume"		"VOL_NORM"
+	"pitch"			"PITCH_NORM"
+
+	"soundlevel"	"SNDLVL_NORM"
+	"wave"	"player/tyranid_fall.wav"
+}
+
+"EX_Player_Gaunt.RunFootstep"
+{
+	"channel"		"CHAN_BODY"
+	"volume"		"0.400000"
+	"pitch"			"95, 105"
+
+	"soundlevel"	"SNDLVL_NORM"
+	"wave"	"player/gaunt_foot2.wav"
+}
+
+"EX_Player_Tranid.roar"
+{
+	"channel"		"CHAN_AUTO"
+	"volume"		"VOL_NORM"
+	"pitch"			"PITCH_NORM"
+
+	"soundlevel"	"SNDLVL_NORM"
+
+	"rndwave"
+	{
+		"wave"	"player/nid_roar1b.wav"	
+		"wave"	"player/nid_roar2b.wav"	
+		"wave"	"player/nid_roar3b.wav"	
+		"wave"	"player/nid_roar4b.wav"	
+		"wave"	"player/nid_roar5b.wav"	
+	}
+}

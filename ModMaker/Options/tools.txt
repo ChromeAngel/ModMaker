@@ -1,0 +1,155 @@
+﻿tools
+{
+	"cd"
+	{
+		overview "Changes the working folder to one the specified.  Must be on the correct drive already"
+		description "Path of the folder to be made current"
+		control "folderpicker"
+		anonArg 1
+		
+	}
+	"rem"
+	{
+		overview "Remarks or comments for documentation."
+		description "text to be included"
+		control "textbox"
+		anonArg 1
+	}
+	"{SDKPath}vbsp.exe"
+	{
+		overview "Takes a VMF from hammer and produces a basic BSP"
+		description "Path to the .vmf to be compiled"
+		control "filepicker"
+		anonArg 1
+		arguments
+		{
+			"-v"
+			{
+				description "Turn on verbose output (also shows more command-line options)."
+				control checkbox
+			}
+			"-onlyents"
+			{
+				description "Only import the entities from the VMF. Brushes and internal entities are not modified. Conserves existing lighting data."
+				control checkbox
+			}
+			"-onlyprops"
+			{
+				description "Only update static and detail props (i.e. the internal entities). Does not generate a .prt file, making VVIS fail!"
+				control checkbox
+			}
+			"-glview"
+			{
+				description "Writes glview data to the VMF's directory. -tmpout will cause the files will be written to \tmp instead."
+				control checkbox
+			}
+			"-nodetail"
+			{
+				description "Removes func_detail brushes. The geometry left over is what affects visibility."
+				control checkbox
+			}
+			"-nowater"
+			{
+				description "Get rid of water brushes."
+				control checkbox
+			}
+			"-low"
+			{
+				description "Run as an idle-priority process."
+				control checkbox
+			}
+//			"-vproject "
+//			{
+//				description "Specify the game/mod to compile for" 
+//				control folderpicker
+//				anonArg 1
+//			}
+			"-game "
+			{
+				description "Specify the game/mod to compile for" 
+				control folderpicker
+				anonArg 1
+				default "{ModPath}"
+			}
+			//here be advanced options
+			"-novconfig"
+			{
+				advanced 1
+				control checkbox
+				description "Don't bring up graphical UI on vproject errors."
+			}
+			"-threads"
+			{
+				description "Control the number of threads vbsp uses (defaults to the # of processors (times 2 for Hypertreading/SMT CPU's) on your machine)."
+				control textbox
+			}
+			"-verboseentities"
+			{
+				advanced 1
+				control checkbox
+				description "If verbose is on, this disables verbose output for submodels."
+			}
+			"-noweld"
+			{
+				advanced 1
+				control checkbox
+				description "Don't join face vertexes together."
+			}
+			"-nocsg"
+			{
+				advanced 1
+				control checkbox
+				description "Don't chop out intersecting brush areas."
+			}
+			"-noshare"
+			{
+				advanced 1
+				control checkbox
+				description "Emit unique face edges instead of sharing them."
+			}
+			"-notjunc"
+			{
+				advanced 1
+				control checkbox
+				description "Don't fixup t-junctions."
+			}
+			"-noopt"
+			{
+				advanced 1
+				control checkbox
+				description "Disable vbsp default behaviour wher it removes the 'outer shell' of the map (all the faces outside the map)."
+			}
+			"-noprune"
+			{
+				advanced 1
+				control checkbox
+				description "Don't prune neighboring solid nodes."
+			}
+			"-nomerge"
+			{
+				advanced 1
+				control checkbox
+				description "Don't merge together chopped faces on nodes."
+			}
+			"-nomergewater"
+			{
+				advanced 1
+				control checkbox
+				description "Don't merge together chopped faces on water."
+			}
+			"-nosubdiv"
+			{
+				advanced 1
+				control checkbox
+				description "Don't subdivide faces for lightmapping."
+			}
+			"-micro"
+			{
+				advanced 1
+				control textbox
+				description "vbsp will warn when brushes are output with a volume less than this number."
+				default "1.0"
+			}
+		}
+	}
+}

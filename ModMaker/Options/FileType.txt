@@ -1,0 +1,59 @@
+﻿FileType
+{
+	qc	
+	{
+		command	"{SDKPath}/StudioMdl.exe -game {ModPath} {FilePath}"
+		filter	"Quake C (model) script"
+		logwindow 1
+	}
+	vmf 
+	{
+		command	"BatchCompiler.exe {FilePath}"
+		filter	"Valve Map Format"
+	}
+	png 
+	{
+		command	"VTFEdit.exe {FilePath}"
+		filter	"Portable Network Graphics"
+	}
+	tga 
+	{
+		command	"VTFEdit.exe {FilePath}"
+		filter "Targa Truevision Image"
+	}
+	bmp 
+	{
+		command	"VTFEdit.exe {FilePath}"
+		filter	"Bitmap Image"
+	}
+	psd
+	{
+		command "VTFEdit.exe {FilePath}"
+		filter	"Photoshop Data"
+	}
+	smd
+	{
+		command "QCScriptMaker {FilePath}"
+		filter "Studio Model Data"
+	}
+	bsp
+	{
+		command "{SteamPath}/Steam.exe -applaunch {AppId} -game {ModPath} -map {FilePath}"
+		filter "Binary Space Partion (map)"
+	}
+	txt
+	{
+		command "Notepad.exe {FilePath}"
+		filter "Text Document"
+	}
+	res
+	{
+		command "Notepad.exe {FilePath}"
+		filter "Resource File"
+	}
+	cfg
+	{
+		command "Notepad.exe {FilePath}"
+		filter "Configuration"
+	}
+}

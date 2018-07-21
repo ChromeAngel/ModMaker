@@ -1,0 +1,39 @@
+﻿<mod>\cfg\chapter<n>.cfg
+//List of commands, just map <mapname> for us
+
+//Add tokens to the localization
+<mod>_Chapter<n>_Title	"<Chapter n title>"
+
+//Add section to scripts/titles.txt like...
+
+$fadein 0.01
+$holdtime 3.5
+$position -1 0.58
+
+CHAPTER<n>_TITLE
+{
+#<mod>_Chapter<n>_Title
+}
+
+//Create thumbnails
+<mod>\materials\vgui\chapters\chapter<n>.vmt
+//Images scales to 152x86 at the topleft of a 256x128 image , compiled with the vtex settings nomip and nolod
+"UnlitGeneric"
+{
+  "$baseTexture" "VGUI/chapters/chapter<n>"
+  "$vertexalpha" 1
+}
+
+//Skip this bit
+
+//Create menu backgrounds
+<mod>\scripts\chapterbackgrounds.txt
+//like
+chapters
+{
+	1	"<backgorund bsp name>"
+	2	"my_background02"
+	3	"my_background03"
+}
+//Images should be saved in 
+<mod>\materials\console\

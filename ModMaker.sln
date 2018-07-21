@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModMaker", "ModMaker\ModMaker.csproj", "{E3BD9110-0662-4E6F-9BA6-0C61C3DCA0CF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibModMaker", "LibModMaker\LibModMaker.csproj", "{CB8A16DF-34F8-4103-8DF1-895A9A3E3670}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModMakerTests", "ModMakerTests\ModMakerTests.csproj", "{FDF4E7BC-14CB-48FB-8E41-CBFBE88A705F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "warHammer", "warHammer\warHammer.csproj", "{57882540-E235-4360-A36E-AA81FDC5C8B3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E3BD9110-0662-4E6F-9BA6-0C61C3DCA0CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3BD9110-0662-4E6F-9BA6-0C61C3DCA0CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3BD9110-0662-4E6F-9BA6-0C61C3DCA0CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3BD9110-0662-4E6F-9BA6-0C61C3DCA0CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CB8A16DF-34F8-4103-8DF1-895A9A3E3670}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CB8A16DF-34F8-4103-8DF1-895A9A3E3670}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CB8A16DF-34F8-4103-8DF1-895A9A3E3670}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CB8A16DF-34F8-4103-8DF1-895A9A3E3670}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FDF4E7BC-14CB-48FB-8E41-CBFBE88A705F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDF4E7BC-14CB-48FB-8E41-CBFBE88A705F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDF4E7BC-14CB-48FB-8E41-CBFBE88A705F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDF4E7BC-14CB-48FB-8E41-CBFBE88A705F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57882540-E235-4360-A36E-AA81FDC5C8B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57882540-E235-4360-A36E-AA81FDC5C8B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57882540-E235-4360-A36E-AA81FDC5C8B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57882540-E235-4360-A36E-AA81FDC5C8B3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
