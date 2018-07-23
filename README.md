@@ -3,6 +3,8 @@ Mod Maker
 
 Mod Maker (MM) is primarily a Source mod and tool launcher with productivity features to make it easier to mod for Source including: 2013 Mod Creation, Mod Shortcuts, Automatic Source SDK configuration, FGD editor, RES editor, Compiler, Mod Localization, RAD file editor, Steampipe packing, Installer and Patch file creation.
 
+![MM main window](https://media.moddb.com/images/downloads/1/139/138344/ModMaker2.PNG)
+
 Features include (but are not limited to) :
 
 * 2013 Mod Creation
