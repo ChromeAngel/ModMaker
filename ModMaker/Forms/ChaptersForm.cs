@@ -16,13 +16,7 @@ namespace ModMaker
         public int SelectedChapter {
             get { return _SelectedChapter; }
             set {
-                if (_SelectedChapter > -1) {
-                    ChapterTool.Chapter OldChapter = ListChapters.Items[_SelectedChapter].Tag as ChapterTool.Chapter;
-                    OldChapter.Map = Path.GetFileNameWithoutExtension(txtMapPath.Text);
-                    OldChapter.Title = txtTitle.Text;
-                    OldChapter.Thumbnail = txtThumbnailPath.Text;
-                    ListChapters.Items[_SelectedChapter].Text = OldChapter.Title;
-                }
+                if (_SelectedChapter > -1) GatherChanges();
 
                 _SelectedChapter = value;
 
@@ -35,6 +29,8 @@ namespace ModMaker
 
         public ChapterTool.ChapterList Chapters {
             get {
+                GatherChanges();
+
                 ChapterTool.ChapterList Result = new ChapterTool.ChapterList();
 
                 foreach (ListViewItem Item in ListChapters.Items) {
@@ -186,16 +182,26 @@ namespace ModMaker
 
         private void txtThumbnailPath_TextChanged(object sender, System.EventArgs e)
         {
-            if (!File.Exists(txtThumbnailPath.Text))
-                return;
+            if (!File.Exists(txtThumbnailPath.Text)) return;
 
-            ChapterImages.Images[SelectedChapter] = ChapterTool.GetThumbnailBitmap(txtThumbnailPath.Text);
+            ChapterImages.Images.Add(ChapterTool.GetThumbnailBitmap(txtThumbnailPath.Text));
         }
 
         private void ListChapters_ItemActivate(object sender, System.EventArgs e)
         {
             SelectedChapter = ListChapters.SelectedIndices[0];
         }
-    }
+
+        public void GatherChanges()
+        {
+            ChapterTool.Chapter OldChapter = ListChapters.Items[_SelectedChapter].Tag as ChapterTool.Chapter;
+            OldChapter.Map = Path.GetFileNameWithoutExtension(txtMapPath.Text);
+            OldChapter.Title = txtTitle.Text;
+            OldChapter.Thumbnail = txtThumbnailPath.Text;
+            ListChapters.Items[_SelectedChapter].Text = OldChapter.Title;
+        }
+
+
+    } //class
 
 }

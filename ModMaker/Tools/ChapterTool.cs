@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace ModMaker
 {
@@ -54,8 +55,9 @@ namespace ModMaker
 
             Dialog.Chapters = Chapters;
 
-            if (Dialog.ShowDialog() != DialogResult.OK)
-                return;
+            if (Dialog.ShowDialog() != DialogResult.OK) return;
+
+            Dialog.GatherChanges();
 
             //save it
             Dialog.Chapters.Save(Game);
@@ -120,7 +122,80 @@ namespace ModMaker
             {
                 return String.Format("cfg/chapter{0}.cfg", Index);
             }
+
+            public bool Save(ref Dictionary<string, string> Tokens, SourceMod Game)
+            {
+                Tokens[TitleToken(Game)] = Title;
+
+                string CfgFilePath = Path.Combine(Game.InstallPath, ConfigFilePath());
+
+                //Backup the chapter config file before we overwrite it
+                SourceFileSystem.BackUpFile(CfgFilePath);
+
+                //Save the map command
+                using (StreamWriter ConfigFileStream = new StreamWriter(CfgFilePath))
+                {
+                    ConfigFileStream.WriteLine("{0}{1}", mapCommand, Path.GetFileNameWithoutExtension(Map));
+                }
+
+                if (!File.Exists(Thumbnail)) return false;
+
+                Bitmap ThumbnailBmp = GetThumbnailBitmap(Thumbnail);
+                Bitmap VtfReadyThumbail = new Bitmap(256, 128, System.Drawing.Imaging.PixelFormat.Format24bppRgb);
+                Graphics gfx = Graphics.FromImage(VtfReadyThumbail);
+
+                gfx.Clear(Color.Black);
+                gfx.DrawImageUnscaled(ThumbnailBmp, 0, 0);
+                gfx.Flush();
+
+                TGA TGA = new TGA(VtfReadyThumbail);
+                string FolderPath = Path.Combine(Game.SourcePath, "materialsrc", "vgui", "chapters");
+
+                if (!Directory.Exists(FolderPath))
+                {
+                    Directory.CreateDirectory(FolderPath);
+                }
+
+                string TGAPath = Path.Combine(FolderPath, string.Format("chapter{0}.tga", Index));
+
+                TGA.Save(TGAPath);
+
+                string VtexConfigPath = Path.Combine(FolderPath, string.Format("chapter{0}.txt", Index));
+
+                using (StreamWriter ConfigFile = new StreamWriter(VtexConfigPath))
+                {
+                    ConfigFile.WriteLine("nolod 1");
+                    ConfigFile.WriteLine("nomip 1");
+                }
+
+                if (!Steam.IsRunning()) Steam.Launch();
+
+                string OutputFolderPath = Path.Combine(Game.InstallPath, "materials", "vgui", "chapters");
+                if (!Directory.Exists(OutputFolderPath))
+                {
+                    Directory.CreateDirectory(OutputFolderPath);
+                }
+
+                System.Diagnostics.Process Vtex = new System.Diagnostics.Process();
+
+                Vtex.StartInfo.FileName = "vtex.exe";
+                Vtex.StartInfo.Arguments = String.Format(
+                    "-outdir \"{0}\" -mkdir -quiet -nopause -shader UnlitGeneric -vmtparam $vertexalpha 1 \"{1}\"",
+                    OutputFolderPath,
+                    TGAPath
+                );
+                Vtex.StartInfo.CreateNoWindow = true;
+                Vtex.StartInfo.WorkingDirectory = Game.SDKPath;
+                Vtex.StartInfo.UseShellExecute = true;
+
+                Vtex.Start();
+                Vtex.WaitForExit();
+
+                return true;
+            }
         } // end of the Chapter class
+
+        private static string mapCommand = "map ";
 
         /// <summary>
         /// Conceptual list of Chapters
@@ -141,7 +216,7 @@ namespace ModMaker
                 foreach (string ConfigFilePath in Configs)
                 {
                     //trim the leading 7 charecters "chapter" off of the filename, the remainder is expected to be the chapter index
-                    string strIndex = Path.GetFileNameWithoutExtension(ConfigFilePath).Substring(7);  
+                    string strIndex = Path.GetFileNameWithoutExtension(ConfigFilePath).Substring("chapter".Length);  
                     int Index = -1;
 
                     if (!int.TryParse(strIndex,out Index))
@@ -153,8 +228,7 @@ namespace ModMaker
                     Result.Title = Game.Localize(Result.TitleToken(Game));
                     Result.Thumbnail = Path.Combine(Game.InstallPath, "materials", "vgui", "chapters", string.Format("chapter{0}.vtf", Index));
 
-                    if (!File.Exists(Result.Thumbnail))
-                        Result.Thumbnail = null;
+                    if (!File.Exists(Result.Thumbnail)) Result.Thumbnail = null;
 
                     //get map from the config file
                     using (StreamReader CfgFile = new StreamReader(ConfigFilePath))
@@ -165,10 +239,10 @@ namespace ModMaker
                         {
                             Line = Line.Trim();
 
-                            if (Line.StartsWith("map"))
+                            if (Line.StartsWith(mapCommand))
                             {
                                 //Get Map from config file, this trims the leading "map " command
-                                Result.Map = Line.Substring(4);
+                                Result.Map = Line.Substring(mapCommand.Length);
 
                                 break; // TODO: might not be correct. Was : Exit While
                             }
@@ -194,57 +268,7 @@ namespace ModMaker
 
                 foreach (Chapter C in this)
                 {
-                    Tokens[C.TitleToken(Game)] = C.Title;
-
-                    string CfgFilePath = Path.Combine(Game.InstallPath, C.ConfigFilePath());
-
-                    //Backup the chapter config file before we overwrite it
-                    SourceFileSystem.BackUpFile(CfgFilePath);
-
-                    //Save the map command
-                    using (StreamWriter ConfigFileStream = new StreamWriter(CfgFilePath))
-                    {
-                        ConfigFileStream.WriteLine("map {0}", Path.GetFileNameWithoutExtension(C.Map));
-                    }
-
-                    if (!File.Exists(C.Thumbnail))
-                        continue;
-
-                    Bitmap ThumbnailBmp = GetThumbnailBitmap(C.Thumbnail);
-                    Bitmap VtfReadyThumbail = new Bitmap(256, 128, System.Drawing.Imaging.PixelFormat.Format24bppRgb);
-                    Graphics gfx = Graphics.FromImage(VtfReadyThumbail);
-
-                    gfx.Clear(Color.Black);
-                    gfx.DrawImageUnscaled(ThumbnailBmp, 0, 0);
-                    gfx.Flush();
-
-                    TGA TGA = new TGA(VtfReadyThumbail);
-                    string TGAPath = Path.Combine(Game.SourcePath,"materialsrc", "vgui", "chapters", string.Format("chapter{0}.tga" , C.Index));
-
-                    TGA.Save(TGAPath);
-
-                    string VtexConfigPath = Path.Combine(Game.SourcePath,"materialsrc", "vgui", "chapters", string.Format("chapter{0}.txt", C.Index));
-
-                    using (StreamWriter ConfigFile = new StreamWriter(VtexConfigPath))
-                    {
-                        ConfigFile.WriteLine("nolod 1");
-                        ConfigFile.WriteLine("nomip 1");
-                    }
-
-                    System.Diagnostics.Process Vtex = new System.Diagnostics.Process();
-
-                    Vtex.StartInfo.FileName = "vtex.exe";
-                    Vtex.StartInfo.Arguments = String.Format(
-                        "-outdir \"{0}\" -mkdir -quiet -shader UnlitGeneric -vmtparam $vertexalpha 1 \"{1}\"",
-                        Path.Combine(Game.InstallPath, "materials","vgui","chapters"),
-                        TGAPath
-                    );
-                    Vtex.StartInfo.CreateNoWindow = true;
-                    Vtex.StartInfo.WorkingDirectory = Game.SDKPath;
-                    Vtex.StartInfo.UseShellExecute = false;
-
-                    Vtex.Start();
-                    Vtex.WaitForExit();
+                    C.Save(ref Tokens, Game);
                 }
 
                 //Save tokens to the localization file
@@ -262,10 +286,8 @@ namespace ModMaker
             /// <returns>true on sucess</returns>
             private bool SaveTitle(SourceMod Game, Dictionary<string, string> NewTokens)
             {
-                if (NewTokens == null)
-                    return false;
-                if (NewTokens.Count == 0)
-                    return true;
+                if (NewTokens == null) return false;
+                if (NewTokens.Count == 0) return true;
 
                 string TitleFilePath = Path.Combine(Game.InstallPath, "scripts", "titles.txt");
 
@@ -408,30 +430,25 @@ namespace ModMaker
             /// <returns>true on success</returns>
             public bool SaveTokens(SourceMod Game, Dictionary<string, string> NewTokens, string Language = "English")
             {
-                if (NewTokens == null)
-                    return false;
-                if (NewTokens.Count == 0)
-                    return true;
+                if (NewTokens == null) return false;
+                if (NewTokens.Count == 0) return true;
 
                 string LanguageFilePath = Path.Combine(Game.InstallPath, "resource");
 
                 LanguageFilePath = Path.Combine(LanguageFilePath, String.Format("{0}_{1}.txt", Game.InstallFolder ,Language));
 
-                if (!File.Exists(LanguageFilePath))
-                    return false;
+                if (!File.Exists(LanguageFilePath)) return false;
 
                 //Backup files before changing them
                 SourceFileSystem.BackUpFile(LanguageFilePath);
 
                 KeyValues LocalizationFile = KeyValues.LoadFile(LanguageFilePath);
 
-                if (LocalizationFile == null)
-                    return false;
+                if (LocalizationFile == null) return false;
 
                 KeyValues Tokens = LocalizationFile.GetKey("Tokens");
 
-                if (Tokens == null)
-                    return false;
+                if (Tokens == null) return false;
 
                 foreach (var Token in NewTokens.Keys)
                 {
