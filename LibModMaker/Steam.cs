@@ -317,6 +317,32 @@ namespace LibModMaker
             return null;
         }
 
+        /// <summary>
+        /// Is Steam running?
+        /// </summary>
+        /// <returns>true if the Steam process is running</returns>
+        public static bool IsRunning()
+        {
+            Process[] processes = Process.GetProcesses();
+            foreach(var p in processes)
+            {
+                if (p.ProcessName == "Steam") return true;
+
+                Debug.WriteLine(p.ProcessName);
+            }
+
+            return false;
+        }
+
+
+        /// <summary>
+        /// Start steam
+        /// </summary>
+        public static void Launch()
+        {
+            Process.Start(ExePath);
+        }
+
         public static void InstallApp(int AppID)
         {
             Process.Start(ExePath, "steam://install/" + AppID);
