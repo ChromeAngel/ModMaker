@@ -19,7 +19,8 @@ namespace ModMaker {
     {
         public SourceMod Game;
         private ForgeGameData _fgd = new ForgeGameData();
-        private Dictionary<string, ForgeGameData.EntityDef> _subset;
+        //private Dictionary<string, ForgeGameData.EntityDef> _subset;
+        private List<ForgeGameData.EntityDef> _subset;
         private ForgeGameData.EntityDef _entity = null;
         private DataTable _dtFlags;
 
@@ -171,30 +172,34 @@ namespace ModMaker {
             RefreshIncludesList();
 
             _subset = null;
-
+            
             if (mnuEntBases.Checked)
-                _subset = _fgd.Bases;
+                _subset = _fgd.Entities.Where(x => x.EntityType == ForgeGameData.EntityDef.EntityTypes.Base).ToList();
             if (mnuEntSolids.Checked)
-                _subset = _fgd.Solids;
+                _subset = _fgd.Entities.Where(x => x.EntityType == ForgeGameData.EntityDef.EntityTypes.Solid).ToList();
             if (mnuEntPoints.Checked)
-                _subset = _fgd.Points;
+                _subset = _fgd.Entities.Where(x => x.EntityType == ForgeGameData.EntityDef.EntityTypes.Point).ToList();
 
-            if (_subset == null)
-                return;
-            if (_subset.Count == 0)
-                return;
+            if (_subset == null) return;
+            if (_subset.Count == 0) return;
 
-            string[] EntityNames = new string[_subset.Keys.Count()];
-
-            _subset.Keys.CopyTo(EntityNames, 0);
+            string[] EntityNames = new string[_subset.Count()];
+            int EntityIndex = 0;
+            foreach(ForgeGameData.EntityDef Entity in _subset)
+            {
+                EntityNames[EntityIndex] = Entity.Name;
+                EntityIndex++;
+            }
+            //_subset.Keys.CopyTo(EntityNames, 0);
             cboEntList.Items.AddRange(EntityNames);
             cboEntList.SelectedIndex = 0;
         }
 
         private void RefreshIncludesList()
         {
-            foreach (string ImportFile in _fgd.Includes.Keys) {
-                cboInclude.Items.Add(ImportFile);
+            foreach (ForgeGameData Include in _fgd.Includes)
+            {
+                cboInclude.Items.Add(Include.FileName);
             }
 
             cboInclude.BackColor = SystemColors.Window;
@@ -203,26 +208,31 @@ namespace ModMaker {
 
         private void cboImports_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
         {
-            if (e.KeyCode != Keys.Enter)
-                return;
+            if (e.KeyCode != Keys.Enter) return;
 
             string NewInclude = cboInclude.Text;
 
-            if (_fgd.Includes.ContainsKey(NewInclude))
-                return;
+            if (_fgd.HasInclude(NewInclude)) return;
 
             string Folder = Directory.GetCurrentDirectory();
 
             if (Game != null)
+            {
                 Folder = Game.InstallPath;
+            }
+
             if (_fgd.FileName != null)
+            {
                 Folder = Path.GetDirectoryName(_fgd.FileName);
+            }
 
             string IncludePath = Path.Combine(Folder, NewInclude);
 
-            if (File.Exists(IncludePath)) {
-                _fgd.Includes[NewInclude] = new ForgeGameData();
-                _fgd.Includes[NewInclude].Load(IncludePath);
+            if (File.Exists(IncludePath))
+            {
+                ForgeGameData Include = new ForgeGameData();
+                Include.Load(IncludePath);
+                _fgd.Includes.Add(Include);
                 cboInclude.Items.Add(NewInclude);
                 cboInclude.BackColor = SystemColors.Window;
 
@@ -238,8 +248,9 @@ namespace ModMaker {
 
                     if (File.Exists(IncludePath))
                     {
-                        _fgd.Includes[NewInclude] = new ForgeGameData();
-                        _fgd.Includes[NewInclude].Load(IncludePath);
+                        var Include = new ForgeGameData();
+                        Include.Load(IncludePath);
+                        _fgd.Includes.Add(Include);
                         cboInclude.Items.Add(NewInclude);
                         cboInclude.BackColor = SystemColors.Window;
 
@@ -253,10 +264,9 @@ namespace ModMaker {
         }
         private void cboEntList_SelectedIndexChanged(object sender, System.EventArgs e)
         {
-            if (cboEntList.SelectedIndex == -1)
-                return;
+            if (cboEntList.SelectedIndex == -1) return;
 
-            Entity = _subset[cboEntList.SelectedItem.ToString()];
+            Entity = _subset.FirstOrDefault(x=>x.Name == cboEntList.SelectedItem.ToString());
         }
 
 //# Region "Get and set entity properties, flags, IO and Widgets"
@@ -356,9 +366,11 @@ namespace ModMaker {
 
             AddFlags(_entity);
 
-            foreach (string Basename in _entity.Bases) {
-                if (!_fgd.Bases.ContainsKey(Basename))
-                    continue;
+            foreach (string Basename in _entity.Bases)
+            {
+                ForgeGameData.EntityDef BaseEntity = _fgd.GetBaseByName(Basename);
+
+                if (BaseEntity == null) continue;
 
                 AddFlags(_fgd.GetBaseByName(Basename), true);
             }
@@ -788,14 +800,16 @@ namespace ModMaker {
             if (Interaction.MsgBox("Are you sure you want to delete " + _entity.Name + "?", MsgBoxStyle.Question & MsgBoxStyle.YesNo, "Delete Entity?") != MsgBoxResult.Yes)
                 return;
 
-            switch (_entity.EntityType) {
-                case ForgeGameData.EntityDef.EntityTypes.Base:
-                    _fgd.Bases.Remove(_entity.Name);break;
-                case ForgeGameData.EntityDef.EntityTypes.Solid:
-                    _fgd.Solids.Remove(_entity.Name);break;
-                default:
-                    _fgd.Points.Remove(_entity.Name);break;
-            }
+            //switch (_entity.EntityType)
+            //{
+            //    case ForgeGameData.EntityDef.EntityTypes.Base:
+            //        _fgd.Bases.Remove(_entity.Name);break;
+            //    case ForgeGameData.EntityDef.EntityTypes.Solid:
+            //        _fgd.Solids.Remove(_entity.Name);break;
+            //    default:
+            //        _fgd.Points.Remove(_entity.Name);break;
+            //}
+            _fgd.Entities.Remove(_entity);
 
             RefreshEntityList();
         }

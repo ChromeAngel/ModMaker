@@ -2,7 +2,8 @@
 using System.Drawing;
 using System.Windows.Forms;
 using LibModMaker;
-using Microsoft.VisualBasic; 
+using Microsoft.VisualBasic;
+using System.Linq;
 
 namespace ModMaker
 {
@@ -111,14 +112,16 @@ namespace ModMaker
 
         private void AddBaseItems(ForgeGameData FGD)
         {
-            foreach (string EntityName in FGD.Bases.Keys)
-            {
-                ListBases.Items.Add(EntityName);
-            }
-
-            foreach (ForgeGameData Included in FGD.Includes.Values)
+            foreach (ForgeGameData Included in FGD.Includes)
             {
                 AddBaseItems(Included);
+            }
+
+            foreach (ForgeGameData.EntityDef Entity in FGD.Entities)
+            {
+                if (Entity.EntityType != ForgeGameData.EntityDef.EntityTypes.Base) continue;
+
+                ListBases.Items.Add(Entity.Name);
             }
         }
 
@@ -131,15 +134,16 @@ namespace ModMaker
             }
             else
             {
-                if (FGD.Bases.ContainsKey(txtName.Text) || FGD.Points.ContainsKey(txtName.Text) || FGD.Solids.ContainsKey(txtName.Text))
-                {
-                    txtName.BackColor = Color.FromArgb(247, 221, 234);
-                    //pastel pink - conflict
-                }
-                else
+                // if (FGD.Bases.ContainsKey(txtName.Text) || FGD.Points.ContainsKey(txtName.Text) || FGD.Solids.ContainsKey(txtName.Text))
+                if (FGD.Entities.FirstOrDefault(x=>x.Name == txtName.Text) == null)
                 {
                     txtName.BackColor = Color.FromArgb(213, 239, 186);
                     //pastel green - no conflict
+                }
+                else
+                {
+                    txtName.BackColor = Color.FromArgb(247, 221, 234);
+                    //pastel pink - conflict
                 }
             }
         }
@@ -167,20 +171,15 @@ namespace ModMaker
                 Result.Widgets.Add(BaseWidget);
             }
 
-
             ParseDataDesc(Result);
-
-            Dictionary<string, ForgeGameData.EntityDef> Subset = FGD.Points;
 
             if (radBase.Checked)
             {
                 Result.EntityType = ForgeGameData.EntityDef.EntityTypes.Base;
-                Subset = FGD.Bases;
             }
             if (radSolid.Checked)
             {
                 Result.EntityType = ForgeGameData.EntityDef.EntityTypes.Solid;
-                Subset = FGD.Solids;
             }
             if (radPoint.Checked)
             {
@@ -203,7 +202,7 @@ namespace ModMaker
                 Result.EntityType = ForgeGameData.EntityDef.EntityTypes.KeyFrame;
             }
 
-            Subset.Add(Result.Name, Result);
+            FGD.Entities.Add(Result);
 
             return Result;
         }
