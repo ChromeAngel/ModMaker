@@ -144,18 +144,20 @@ namespace LibModMaker
         {
             if (FilePath == null) return null;
 
+            if (!Steam.IsRunning()) Steam.Launch();
+
             System.Diagnostics.Process Vtex = new System.Diagnostics.Process();
             string ResultFile = Path.Combine(Path.GetTempPath(), Path.GetFileNameWithoutExtension(FilePath));
 
             Vtex.StartInfo.FileName = "vtex.exe";
             Vtex.StartInfo.Arguments = String.Format(
-                "-outdir \"{0}\" -mkdir -quiet -shader UnlitGeneric \"{1}\"", 
+                "-outdir \"{0}\" -mkdir -quiet -nopause -shader UnlitGeneric \"{1}\"", 
                 ResultFile, 
                 FilePath 
             );
             Vtex.StartInfo.CreateNoWindow = true;
             Vtex.StartInfo.WorkingDirectory = SDKPath;
-            Vtex.StartInfo.UseShellExecute = false;
+            Vtex.StartInfo.UseShellExecute = true;
 
             Vtex.Start();
             Vtex.WaitForExit();
