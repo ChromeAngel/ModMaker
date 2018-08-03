@@ -47,6 +47,8 @@ namespace LibModMaker
 
         public void Save(string Filename)
         {
+            if (string.IsNullOrEmpty(Filename)) throw new ArgumentException("Filename is null or empty", "Filename");
+
             byte[] TempBytes;
             using (FileStream F = new FileStream(Filename, FileMode.Create))
             {
@@ -330,7 +332,7 @@ namespace LibModMaker
 
             public override byte[] Save()
             {
-                byte[] Work = new byte[17];
+                byte[] Work = new byte[18];
 
                 //1 byte, length of the image ID
                 //1 byte, use 0 for truecolor images
@@ -407,7 +409,7 @@ namespace LibModMaker
 
             public override byte[] Save()
             {
-                byte[] Work = new byte[9];
+                byte[] Work = new byte[10];
                 //2 bytes, X origin
                 //2 bytes, y origin
                 //2 bytes, width
@@ -557,7 +559,7 @@ namespace LibModMaker
 
             public override byte[] Save()
             {
-                byte[] Work = new byte[24];
+                byte[] Work = new byte[25];
                 //Bytes 0-3: The Extension Area Offset
 
                 //Bytes 4-7: The Developer Directory Offset
