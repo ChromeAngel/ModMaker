@@ -20,28 +20,27 @@ public class FGDReader : CCommentReader
 	{
 		string Result = ReadBuffer();
 
-		if (Result == null)
-			return null;
+		if (Result == null) return null;
 
 		Result = Result.Trim();
 
-		if (Result.Length == 0)
-			return ReadLine();
+		if (Result.Length == 0) return ReadLine();
 
-		if (!Result.EndsWith(Plus.ToString()))
-			return Result;
+		if (!Result.EndsWith(Plus.ToString())) return Result;
 
 		string Peek = ReadBuffer();
 
 		Peek = Peek.Trim();
 
-		if (Peek.StartsWith(Quote.ToString())) {
+		if (Peek.StartsWith(Quote.ToString()))
+        {
 			Result = Result.TrimEnd(Plus).TrimEnd().TrimEnd(Quote) + Peek.Substring(1);
 		} else {
 			Result = Result.TrimEnd(Plus).TrimEnd();
 		}
 
-		if (Result.Length == 0) {
+		if (Result.Length == 0)
+        {
 			Result = Peek;
 		} else {
 			Buffer.Append(Peek);

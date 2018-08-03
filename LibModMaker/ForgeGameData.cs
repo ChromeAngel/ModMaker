@@ -65,8 +65,7 @@ namespace LibModMaker
 
 		public static bool TryParse(string Line, IOConnector Result)
 		{
-			if (string.IsNullOrEmpty(Line))
-				return false;
+			if (string.IsNullOrEmpty(Line)) return false;
 
 			Line = Line.Trim();
             Line = Line.Replace("\t", " ");
@@ -80,27 +79,20 @@ namespace LibModMaker
 
             int TypeEndIndex = Line.IndexOf(") : \"");
 
-			if (TypeEndIndex == -1)
-            {
-                    return false;
-            }
-				
+			if (TypeEndIndex == -1) return false;	
 
 			int NameStartIndex = Line.IndexOf(" ");
 
-			if (NameStartIndex == -1)
-				return false;
+			if (NameStartIndex == -1) return false;
 
 			NameStartIndex += 1;
 			//we dont want the space, but the letter after it
 
-			if (NameStartIndex > TypeEndIndex)
-				return false;
+			if (NameStartIndex > TypeEndIndex) return false;
 
 			string[] NameType = Line.Substring(NameStartIndex, TypeEndIndex - NameStartIndex).Split('(');
 
-			if (NameType.Length < 2)
-				return false;
+			if (NameType.Length < 2) return false;
 
 			TypeEndIndex += ") : \"".Length;
 
@@ -139,15 +131,13 @@ namespace LibModMaker
 
 		public static bool TryParse(string Line, SpawnFlag Result)
 		{
-			if (string.IsNullOrEmpty(Line))
-				return false;
+			if (string.IsNullOrEmpty(Line)) return false;
 
 			Line = Line.Trim();
 
 			string[] Bits = Line.Split(':');
 
-			if (Bits.Length < 2)
-				return false;
+			if (Bits.Length < 2) return false;
 
 		    for (int i = 0; i < Bits.Length; i++)
 		    {
@@ -156,8 +146,7 @@ namespace LibModMaker
 
 		    int iTempBItFlags;
 
-			if (!int.TryParse(Bits[0], out iTempBItFlags))
-				return false;
+			if (!int.TryParse(Bits[0], out iTempBItFlags)) return false;
 
 		    Result.BitFlags = iTempBItFlags;
             Result.Name = Bits[1].Trim().Trim('"');
@@ -257,44 +246,42 @@ namespace LibModMaker
 					Result.Append("@PointClass");
                         break;
                     case EntityTypes.Solid:
-					Result.AppendFormat("@SolidClass"); break;
+					Result.Append("@SolidClass"); break;
                     case EntityTypes.Filter:
-					Result.AppendFormat("@FilterClass"); break;
+					Result.Append("@FilterClass"); break;
                     case EntityTypes.KeyFrame:
-					Result.AppendFormat("@KeyFrameClass"); break;
+					Result.Append("@KeyFrameClass"); break;
                     case EntityTypes.Move:
-					Result.AppendFormat("@MoveClass"); break;
+					Result.Append("@MoveClass"); break;
                     case EntityTypes.NPC:
-					Result.AppendFormat("@NPCClass"); break;
+					Result.Append("@NPCClass"); break;
                 }
 
 			foreach (Widget W in Widgets) {
 				Result.Append(W.ToFGDString());
 			}
-			//If Bases.Count > 0 Then
-			//    Result.Append(" base(")
-			//    Result.Append(String.Join(", ", Bases.ToArray()))
-			//    Result.Append(")")
-			//End If
 
-			switch (EntityType) {
+			switch (EntityType)
+            {
 				case EntityTypes.Base:
 					Result.AppendFormat(" = {0}\r\n", Name);
                         break;
                     default:
 					Result.AppendFormat(" = {0}:\r\n", Name);
                         break;
-                }
+            }
 
-			if (string.IsNullOrEmpty(Comment)) {
+			if (string.IsNullOrEmpty(Comment))
+            {
 				Result.AppendFormat("{0}\"\"\r\n", strIndent);
 			} else  {
                 Result.AppendFormat("{0}\"{1}\"\r\n", strIndent, Comment);
             }
 
-                Result.AppendFormat("{0}[\r\n", strIndent);
+            Result.AppendFormat("{0}[\r\n", strIndent);
 
-			foreach (iEntityProperty P in Properties.Values) {
+			foreach (iEntityProperty P in Properties.Values)
+            {
 				Result.Append(P.ToString(Indent + 1));
 			}
 
@@ -316,7 +303,6 @@ namespace LibModMaker
 
 			Result.AppendFormat("{0}]\r\n", strIndent);
 
-
             return Result.ToString();
 		}
 	}
@@ -331,8 +317,7 @@ namespace LibModMaker
 
 	public string FileName {
 		get {
-			if (_FileName == null)
-				return "Untitled.fgd";
+			if (_FileName == null) return "Untitled.fgd";
 
 			return _FileName;
 		}
@@ -340,96 +325,106 @@ namespace LibModMaker
 
 	public void Load(string FileName)
 	{
-		if (string.IsNullOrEmpty(FileName))
-			throw new ArgumentException("No Filename Specified");
+		if (string.IsNullOrEmpty(FileName)) throw new ArgumentException("No Filename Specified");
 
-		if (!File.Exists(FileName))
-			throw new ArgumentException();
+		if (!File.Exists(FileName)) throw new ArgumentException();
 
 		_FileName = FileName;
 
 		string Line;
 		Dictionary<string, iCommand> Commands = new Dictionary<string, iCommand>();
 
-		using (FGDReader file = new FGDReader(FileName)) {
-			Line = file.ReadLine();
+        using (FGDReader file = new FGDReader(FileName))
+        {
+            Line = file.ReadLine();
 
-			while (Line != null) {
-				if (Line.StartsWith("@")) {
-					string Command = Line.Substring(1, Line.IndexOf(" ") - 1);
+            while (Line != null)
+            {
+                if (Line.StartsWith("@"))
+                {
+                    string Command = Line.Substring(1, Line.IndexOf(" ") - 1);
 
-					switch (Command) {
-						case "BaseClass":
-							Line = BaseClassRead(Line.Substring("@BaseClass".Length), file, this.Bases, EntityDef.EntityTypes.Base);
-					        break;
-						case "SolidClass":
-							Line = BaseClassRead(Line.Substring("@SolidClass".Length), file, this.Solids, EntityDef.EntityTypes.Solid); break;
-                            case "PointClass":
-							Line = BaseClassRead(Line.Substring("@PointClass".Length), file, this.Points, EntityDef.EntityTypes.Point); break;
-                            case "FilterClass":
-							Line = BaseClassRead(Line.Substring("@FilterClass".Length), file, this.Points, EntityDef.EntityTypes.Filter); break;
-                            case "KeyFrameClass":
-							Line = BaseClassRead(Line.Substring("@KeyFrameClass".Length), file, this.Points, EntityDef.EntityTypes.KeyFrame); break;
-                            case "MoveClass":
-							Line = BaseClassRead(Line.Substring("@MoveClass".Length), file, this.Points, EntityDef.EntityTypes.Move); break;
-                            case "NPCClass":
-							Line = BaseClassRead(Line.Substring("@NPCClass".Length), file, this.Points, EntityDef.EntityTypes.NPC); break;
-                            case "include":
-							Line = IncludeRead(Line.Substring("@include".Length), file); break;
-                            case "mapsize":
-							MapSize = Line.Substring("@mapsize".Length).Trim();
-                                Line = file.ReadLine();
-                                break;
-                            default:
-							Debug.WriteLine("Unknown Command @" + Command);
+                    switch (Command)
+                    {
+                        case "BaseClass":
+                            Line = BaseClassRead(Line.Substring("@BaseClass".Length), file, this.Bases, EntityDef.EntityTypes.Base);
+                            break;
+                        case "SolidClass":
+                            Line = BaseClassRead(Line.Substring("@SolidClass".Length), file, this.Solids, EntityDef.EntityTypes.Solid); break;
+                        case "PointClass":
+                            Line = BaseClassRead(Line.Substring("@PointClass".Length), file, this.Points, EntityDef.EntityTypes.Point); break;
+                        case "FilterClass":
+                            Line = BaseClassRead(Line.Substring("@FilterClass".Length), file, this.Points, EntityDef.EntityTypes.Filter); break;
+                        case "KeyFrameClass":
+                            Line = BaseClassRead(Line.Substring("@KeyFrameClass".Length), file, this.Points, EntityDef.EntityTypes.KeyFrame); break;
+                        case "MoveClass":
+                            Line = BaseClassRead(Line.Substring("@MoveClass".Length), file, this.Points, EntityDef.EntityTypes.Move); break;
+                        case "NPCClass":
+                            Line = BaseClassRead(Line.Substring("@NPCClass".Length), file, this.Points, EntityDef.EntityTypes.NPC); break;
+                        case "include":
+                            Line = IncludeRead(Line.Substring("@include".Length), file); break;
+                        case "mapsize":
+                            MapSize = Line.Substring("@mapsize".Length).Trim();
+                            Line = file.ReadLine();
+                            break;
+                        default:
+                            Debug.WriteLine("Unknown Command @" + Command);
 
-							Line = file.ReadLine();
-                                break;
-                        }
-				} else {
-					Line = file.ReadLine();
-				}
-			}
-		}
+                            Line = file.ReadLine();
+                            break;
+                    }
+                }
+                else
+                {
+                    Line = file.ReadLine();
+                }
+            }
+        }
 	}
 
 	public void Save(string FileName = null)
 	{
-		if (FileName == null)
-			FileName = _FileName;
+		if (FileName == null) FileName = _FileName;
 
 		_FileName = FileName;
 
 		//Take a backup of the existing version
 		SourceFileSystem.BackUpFile(FileName);
 
-		using (StreamWriter file = new StreamWriter(FileName)) {
-			file.WriteLine("// Generated by LibModMaker at " + DateTime.Now.ToString());
+        using (StreamWriter file = new StreamWriter(FileName))
+        {
+            file.WriteLine("// Generated by LibModMaker at " + DateTime.Now.ToString());
 
-			foreach (string Inc in Includes.Keys) {
-				file.WriteLine("@include \"{0}\"", Inc);
-			}
+            foreach (string Inc in Includes.Keys)
+            {
+                file.WriteLine("@include \"{0}\"", Inc);
+            }
 
-			if (!string.IsNullOrEmpty(MapSize)) {
-				file.WriteLine("@mapsize {0}", MapSize);
-			}
+            if (!string.IsNullOrEmpty(MapSize))
+            {
+                file.WriteLine("@mapsize {0}", MapSize);
+            }
 
-			foreach (EntityDef B in Bases.Values) {
-				file.WriteLine(B.ToString());
-			}
+            foreach (EntityDef B in Bases.Values)
+            {
+                file.WriteLine(B.ToString());
+            }
 
-			foreach (EntityDef P in Points.Values) {
-				file.WriteLine(P.ToString());
-			}
+            foreach (EntityDef P in Points.Values)
+            {
+                file.WriteLine(P.ToString());
+            }
 
-			foreach (EntityDef P in Filters.Values) {
-				file.WriteLine(P.ToString());
-			}
+            foreach (EntityDef P in Filters.Values)
+            {
+                file.WriteLine(P.ToString());
+            }
 
-			foreach (EntityDef S in Solids.Values) {
-				file.WriteLine(S.ToString());
-			}
-		}
+            foreach (EntityDef S in Solids.Values)
+            {
+                file.WriteLine(S.ToString());
+            }
+        }
 	}
 
 	public string IncludeRead(string CommandLine, FGDReader Source)
@@ -437,7 +432,9 @@ namespace LibModMaker
 		string LocalPath = Directory.GetCurrentDirectory();
 
 		if (FileName != null)
-			LocalPath = Path.GetDirectoryName(FileName);
+        {
+            LocalPath = Path.GetDirectoryName(FileName);
+        }
 
 		ForgeGameData Included = new ForgeGameData();
 
@@ -445,11 +442,13 @@ namespace LibModMaker
 		CommandLine = CommandLine.Trim('"');
 		LocalPath = Path.Combine(LocalPath, CommandLine);
 
-		try {
+		try
+        {
 			Included.Load(LocalPath);
 
 			this.Includes[CommandLine] = Included;
-		} catch (ArgumentException) {
+		} catch (ArgumentException)
+        {
 			//Supress
 		}
 
@@ -461,14 +460,14 @@ namespace LibModMaker
 		EntityDef Result = new EntityDef();
 		string[] Bits = SplitNTrim(CommandLine, '=');
 
-		if (Bits.Length < 2)
-			return Source.ReadLine();
+		if (Bits.Length < 2) return Source.ReadLine();
 
 		string[] DescriptionBits = SplitNTrim(Bits[1], ':');
 
 		Result.EntityType = EntityType;
 
-		if (DescriptionBits.Length > 1) {
+		if (DescriptionBits.Length > 1)
+        {
 			Result.Name = DescriptionBits[0];
 			Result.Comment = DescriptionBits[1].Trim('"');
 		} else {
@@ -479,27 +478,30 @@ namespace LibModMaker
 
 		string Line = Source.ReadLine();
 
-		if (Line == null)
-			return null;
+		if (Line == null) return null;
 
 		Line = Line.Trim();
 
-		while (!Line.StartsWith("[")) {
+		while (!Line.StartsWith("["))
+        {
 			Result.Comment = Result.Comment + Line.Trim('"');
 			Line = Source.ReadLine().Trim();
 		}
 
 		Line = Source.ReadLine();
 
-		while (Line != null && !Line.EndsWith("]")) {
-			if (Line.StartsWith("input") || Line.StartsWith("output")) {
+		while (Line != null && !Line.EndsWith("]"))
+        {
+			if (Line.StartsWith("input") || Line.StartsWith("output"))
+            {
 				Line = ReadIO(Line, Source, Result);
 			} else {
 				Line = PropertyRead(Line, Source, Result);
 			}
 		}
 
-		if (EnitySet.ContainsKey(Result.Name)) {
+		if (EnitySet.ContainsKey(Result.Name))
+        {
 			EnitySet.Remove(Result.Name);
 		}
 
@@ -512,13 +514,13 @@ namespace LibModMaker
 	{
 		string[] strWidgets = Text.Split(')');
 
-		foreach (string Line in strWidgets) {
-			if (Line.Length == 0)
-				continue;
+		foreach (string Line in strWidgets)
+        {
+			if (Line.Length == 0) continue;
 
 			string Line2 = Line.Trim().TrimEnd(')');
-
 			string[] Bits = Line2.Split('(');
+
 			Widget aWidget = new Widget {
 				Name = Bits[0],
 				Seperator = Bits[0] == "base" ? ", " : " "
@@ -533,8 +535,10 @@ namespace LibModMaker
 	{
 		IOConnector Connector = new IOConnector();
 
-		if (IOConnector.TryParse(Line, Connector)) {
-			if (Connector.IsInput) {
+		if (IOConnector.TryParse(Line, Connector))
+        {
+			if (Connector.IsInput)
+            {
 				Result.Inputs[Connector.Name] = Connector;
 			} else {
 				Result.Outputs[Connector.Name] = Connector;
@@ -566,11 +570,13 @@ namespace LibModMaker
 			return null;
 		}
 
-		public string Name {
+		public string Name
+        {
 			get { return _Name; }
 		}
 
-		public string Settings {
+		public string Settings
+        {
 			get { return _settings; }
 			set { _settings = value; }
 		}
@@ -581,7 +587,8 @@ namespace LibModMaker
 
 			Result.AppendFormat("{0}({1}) : {2} ", _Name, _dataType, Quote(_labelText));
 
-			if (!string.IsNullOrEmpty(DefaultValue)) {
+			if (!string.IsNullOrEmpty(DefaultValue))
+            {
 				Result.AppendFormat(" : {0}", Quote(DefaultValue));
 			}
 
@@ -590,31 +597,34 @@ namespace LibModMaker
 			return Result.ToString();
 		}
 
-		public string DataType {
+		public string DataType
+        {
 			get { return _dataType; }
 			set { _dataType = value; }
 		}
 
-		public string LabelText {
+		public string LabelText
+        {
 			get { return _labelText; }
 			set { _labelText = value; }
 		}
 
 
-            protected string LineWrap(string Plain, int LineLength = 150)
+        protected string LineWrap(string Plain, int LineLength = 150)
 		{
 			string Result = Quote(Plain);
 			System.Text.StringBuilder Buffer = new System.Text.StringBuilder();
 
-			while (Result.Length > LineLength) {
+			while (Result.Length > LineLength)
+            {
 				int Pos = LineLength;
 
-				while (char.IsLetterOrDigit(Result.ToCharArray()[Pos]) & Pos > 1) {
+				while (char.IsLetterOrDigit(Result.ToCharArray()[Pos]) & Pos > 1)
+                {
 					Pos = Pos - 1;
 				}
 
-				if (Pos == 1)
-					Pos = LineLength;
+				if (Pos == 1) Pos = LineLength;
 
 				Buffer.Append(Result.Substring(0, Pos)).Append("\" +\r\n\t\t\"");
 				Result = Result.Substring(Pos + 1);
@@ -627,27 +637,31 @@ namespace LibModMaker
 
 		protected string Quote(string Plain)
 		{
-			if (string.IsNullOrEmpty(Plain))
-				return Plain;
+			if (string.IsNullOrEmpty(Plain)) return Plain;
 
 			Plain = Plain.Trim();
 
-			if (Steam.IsNumeric(Plain)) {
-				if (Plain.Contains(".")) {
+			if (Steam.IsNumeric(Plain))
+            {
+				if (Plain.Contains("."))
+                {
 					return '"' + Plain + '"';
 				} else {
 					return Plain;
 				}
 			}
 
-			if (Plain.StartsWith("\"")) {
-				if (Plain.EndsWith("\"")) {
+			if (Plain.StartsWith("\""))
+            {
+				if (Plain.EndsWith("\""))
+                {
 					return Plain;
 				} else {
 					return Plain + '"';
 				}
 			} else {
-				if (Plain.EndsWith("\"")) {
+				if (Plain.EndsWith("\""))
+                {
 					return '"' + Plain;
 				} else {
 					return '"' + Plain + '"';
@@ -667,7 +681,7 @@ namespace LibModMaker
 	}
 
 	public class ChoicesProperty : BaseProperty, ForgeGameData.iEntityProperty
-        {
+    {
 		public Dictionary<string, string> choices = new Dictionary<string, string>();
 		string iEntityProperty.ToString(int Indent = 0)
 		{
@@ -675,7 +689,8 @@ namespace LibModMaker
 
 			Result.AppendFormat("{0}({1}) : {2}", _Name, DataType, Quote(LabelText));
 
-			if (!string.IsNullOrEmpty(DefaultValue)) {
+			if (!string.IsNullOrEmpty(DefaultValue))
+            {
 				Result.AppendFormat(" : {0} ", Quote(DefaultValue));
 			}
 
@@ -688,7 +703,8 @@ namespace LibModMaker
 
 			Result.AppendFormat("=\r\n{0}[\r\n", "".PadLeft(Indent, '\t'));
 
-			foreach (string Value in choices.Keys) {
+			foreach (string Value in choices.Keys)
+            {
 				Result.AppendFormat("{2}{0} : {1}\r\n", Quote(Value), Quote(choices[Value]), "".PadLeft(Indent + 1, '\t'));
 			}
 
@@ -713,7 +729,8 @@ namespace LibModMaker
 
 			Result.AppendFormat("{0}spawnflags(flags) =\r\n{0}[\r\n", "".PadLeft(Indent, '\t'));
 
-			foreach (int K in flags.Keys) {
+			foreach (int K in flags.Keys)
+            {
 				Result.AppendFormat("{3}{0} : {1} : {2}\r\n", K, Quote(flags[K].Name), flags[K].DefaultSetting? 1: 0, "".PadLeft(Indent + 1, '\t'));
 			}
 
@@ -728,7 +745,8 @@ namespace LibModMaker
 	{
 		string[] Result = Source.Split(Seperator);
 
-		for (int I = 0; I <= Result.Length - 1; I++) {
+		for (int I = 0; I <= Result.Length - 1; I++)
+        {
 			Result[I] = Result[I].Trim();
 		}
 
@@ -783,8 +801,10 @@ namespace LibModMaker
 		string[] Bits = SplitNTrim(CommandLine, ':');
 		string[] NameType = Bits[0].Trim().Split("()".ToCharArray());
 
-		if (NameType.Length < 2) {
-			if (CommandLine.Trim().EndsWith("=")) {
+		if (NameType.Length < 2)
+        {
+			if (CommandLine.Trim().EndsWith("="))
+            {
 				return ChoicesRead(CommandLine, Source, Entity);
 			}
 
@@ -792,7 +812,8 @@ namespace LibModMaker
 		}
 
 
-		if (NameType[1].ToLowerInvariant() == "choices" || NameType[1].ToLowerInvariant() == "flags") {
+		if (NameType[1].ToLowerInvariant() == "choices" || NameType[1].ToLowerInvariant() == "flags")
+        {
 			return ChoicesRead(CommandLine, Source, Entity);
 		}
 
@@ -804,21 +825,25 @@ namespace LibModMaker
 			DataType = NameType[1].ToLowerInvariant()
 		};
 
-		if (NameType.Length > 2) {
+		if (NameType.Length > 2)
+        {
 			Result.Settings = Result.Settings + NameType[2];
 		}
 
-		if (Bits.Length > 1) {
+		if (Bits.Length > 1)
+        {
 			Result.LabelText = Bits[1].Trim('"');
 		}
 
-		if (Bits.Length > 2) {
+		if (Bits.Length > 2)
+        {
 			Result.DefaultValue = Bits[2].Trim('"');
 		} else {
 			Result.DefaultValue = "";
 		}
 
-		if (Bits.Length > 3) {
+		if (Bits.Length > 3)
+        {
 			Result.Notes = Bits[3].Trim('"');
 		}
 
@@ -836,12 +861,12 @@ namespace LibModMaker
 		string[] Bits = SplitNTrim(CommandLine, ':');
 		string[] NameType = Bits[0].Trim().TrimEnd(')').Split('(');
 
-		if (NameType.Length < 2)
-			return CommandLine + Source.ReadLine();
+		if (NameType.Length < 2) return CommandLine + Source.ReadLine();
 
 		BaseProperty Result;
 
-		if (CommandLine.StartsWith("spawnflags(", StringComparison.InvariantCultureIgnoreCase)) {
+		if (CommandLine.StartsWith("spawnflags(", StringComparison.InvariantCultureIgnoreCase))
+        {
 			Result = new FlagsProperty {
 				DataType = "flags",
 				_Name = "spawnflags"
@@ -851,13 +876,16 @@ namespace LibModMaker
 			FlagsProperty SpawnFlags = Result as FlagsProperty;
 			SpawnFlag aSpawnFlag;
 
-			if (Line == "[") {
+			if (Line == "[")
+            {
 				Line = Source.ReadLine();
 
-				while (Line != null && !Line.EndsWith("]")) {
+				while (Line != null && !Line.EndsWith("]"))
+                {
 					aSpawnFlag = new SpawnFlag();
 
-					if (SpawnFlag.TryParse(Line, aSpawnFlag)) {
+					if (SpawnFlag.TryParse(Line, aSpawnFlag))
+                    {
 						SpawnFlags.flags.Add(aSpawnFlag.BitFlags, aSpawnFlag);
 					}
 
@@ -870,18 +898,20 @@ namespace LibModMaker
 				DataType = NameType[1].ToLowerInvariant()
 			};
 
-			if (Bits.Length > 2) {
+			if (Bits.Length > 2)
+            {
 				X.DefaultValue = Bits[2].Trim('"');
 			}
 
 			string Line = Source.ReadLine().Trim();
 
-			if (Line == "[") {
+			if (Line == "[")
+            {
 				Line = Source.ReadLine();
 
-				while (Line != null && !Line.EndsWith("]")) {
-					if (Line.EndsWith("]"))
-						break; // TODO: might not be correct. Was : Exit While
+				while (Line != null && !Line.EndsWith("]"))
+                {
+					if (Line.EndsWith("]")) break;
 
 					string[] Choice = SplitNTrim(Line, ':');
 
@@ -890,7 +920,8 @@ namespace LibModMaker
 				}
 			}
 
-			if (Bits.Length > 2) {
+			if (Bits.Length > 2)
+            {
 				X.DefaultValue = Bits[2].Trim('"');
 			} else {
 				X.DefaultValue = "";
@@ -910,16 +941,14 @@ namespace LibModMaker
 	///recursively search includes for the base class 
 	public EntityDef GetBaseByName(string Name)
 	{
-		if (string.IsNullOrEmpty(Name))
-			return null;
-		if (Bases.ContainsKey(Name))
-			return Bases[Name];
+		if (string.IsNullOrEmpty(Name)) return null;
+		if (Bases.ContainsKey(Name)) return Bases[Name];
 
-		foreach (ForgeGameData Include in Includes.Values) {
+		foreach (ForgeGameData Include in Includes.Values)
+        {
 			EntityDef Result = Include.GetBaseByName(Name);
 
-			if (Result != null)
-				return Result;
+			if (Result != null) return Result;
 		}
 
 		return null;

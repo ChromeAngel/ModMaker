@@ -321,6 +321,9 @@
     <EmbeddedResource Include="Forms\AboutForm.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ChaptersForm.resx">
+      <DependentUpon>ChaptersForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\ConsoleProcessMonitorForm.resx">
       <DependentUpon>ConsoleProcessMonitorForm.cs</DependentUpon>
     </EmbeddedResource>
