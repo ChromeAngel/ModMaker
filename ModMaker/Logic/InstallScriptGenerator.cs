@@ -283,7 +283,7 @@ namespace ModMaker
                 Out.WriteLine("!define MUI_ICON \"{0}\"", IconPath);
                 Out.WriteLine("!define FULL_GAME_NAME \"{0}\"", _Mod.Name);
                 Out.WriteLine("!define DESKICO \"{0}\"", IconPath);
-                Out.WriteLine("!define NO_DESKTOP_ICON");
+                //Out.WriteLine("!define NO_DESKTOP_ICON");
                 Out.WriteLine("!define ZIPDLL");
                 Out.WriteLine("!include \"MUI.nsh\"");
 
@@ -300,10 +300,10 @@ namespace ModMaker
 
                 ScriptFolder(_Mod.InstallPath, Out);
 
-                Out.WriteLine("\t!ifndef NO_DESKTOP_ICON");
-                Out.WriteLine("\tSetOutPath \"$ICONDIR\"");
-                Out.WriteLine("\tFile \"${DESKICO}\"");
-                Out.WriteLine("\t!endif");
+                //Out.WriteLine("\t!ifndef NO_DESKTOP_ICON");
+                //Out.WriteLine("\tSetOutPath \"$ICONDIR\"");
+                //Out.WriteLine("\tFile \"${DESKICO}\"");
+                //Out.WriteLine("\t!endif");
                 Out.WriteLine("SectionEnd");
 
                 Out.Write(SetInstallDir(Properties.Resources.NSI_Footer));

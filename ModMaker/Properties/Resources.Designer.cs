@@ -81,6 +81,16 @@ namespace ModMaker.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon computer {
+            get {
+                object obj = ResourceManager.GetObject("computer", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
         ///&lt;Project ToolsVersion=&quot;4.0&quot; xmlns=&quot;http://schemas.microsoft.com/developer/msbuild/2003&quot;&gt;
         ///  &lt;PropertyGroup Condition=&quot;&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;&quot;&gt;&lt;LocalDebuggerCommand&gt;{0}hl2.exe&lt;/LocalDebuggerCommand&gt;&lt;/PropertyGroup&gt;
@@ -96,10 +106,40 @@ namespace ModMaker.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Folder_Closed {
+            get {
+                object obj = ResourceManager.GetObject("Folder_Closed", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Folder_Open {
+            get {
+                object obj = ResourceManager.GetObject("Folder_Open", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap FormRunHS {
             get {
                 object obj = ResourceManager.GetObject("FormRunHS", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon Hard_Drive {
+            get {
+                object obj = ResourceManager.GetObject("Hard_Drive", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
             }
         }
         
@@ -172,13 +212,10 @@ namespace ModMaker.Properties {
         ///OutFile &quot;${PRODUCT_NAME}.exe&quot;
         ///ShowInstDetails show
         ///
-        ///;Section &quot;Mod Files&quot; FILES
-        ///;	SetOverwrite ifdiff
-        ///;	SetOutPath &quot;$INSTDIR\ex&quot;
-        ///;!ifdef ZIPDLL
-        ///;	File &quot;${LOCALDIR}\${MODDIR}.zip&quot;
-        ///;	StrCpy $R0 &quot;$INSTDIR\ex\${MODDIR}.zip&quot;
-        ///;	 [rest of string was truncated]&quot;;.
+        ///!ifndef NO_DESKTOP_ICON
+        ///Section &quot;Desktop Shortcut&quot; SHORTCUT
+        ///	ReadRegStr $R0 HKCU &quot;Software\Valve\Steam&quot; SteamPath
+        ///	SetOutPath &quot;$R0\steamapps\common\ [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string NSI_Footer {
             get {
@@ -259,54 +296,6 @@ namespace ModMaker.Properties {
             get {
                 object obj = ResourceManager.GetObject("Weapon", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
-        /// </summary>
-        internal static System.Drawing.Icon Hard_Drive
-        {
-            get
-            {
-                object obj = ResourceManager.GetObject("Hard_Drive", resourceCulture);
-                return ((System.Drawing.Icon)(obj));
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
-        /// </summary>
-        internal static System.Drawing.Icon computer
-        {
-            get
-            {
-                object obj = ResourceManager.GetObject("computer", resourceCulture);
-                return ((System.Drawing.Icon)(obj));
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Folder_Open
-        {
-            get
-            {
-                object obj = ResourceManager.GetObject("Folder_Open", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Folder_Closed
-        {
-            get
-            {
-                object obj = ResourceManager.GetObject("Folder_Closed", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
             }
         }
     }

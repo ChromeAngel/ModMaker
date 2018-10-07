@@ -170,29 +170,15 @@ Name "${PRODUCT_NAME} ${PRODUCT_VERSION}"
 OutFile "${PRODUCT_NAME}.exe"
 ShowInstDetails show
 
-;Section "Mod Files" FILES
-;	SetOverwrite ifdiff
-;	SetOutPath "$INSTDIR\ex"
-;!ifdef ZIPDLL
-;	File "${LOCALDIR}\${MODDIR}.zip"
-;	StrCpy $R0 "$INSTDIR\ex\${MODDIR}.zip"
-;	ZipDLL::extractall "$R0" "$INSTDIR\ex"
-;	Delete "$R0"
-;!else
-;	File /r "${LOCALDIR}\${MODDIR}"
-;!endif
-;
-;!ifndef NO_DESKTOP_ICON
-;	SetOutPath "$ICONDIR"
-;	File "${DESKICO}"
-;!endif
-;
-;SectionEnd
 !ifndef NO_DESKTOP_ICON
 Section "Desktop Shortcut" SHORTCUT
-	SetOutPath "$DESKTOP"
-	CreateShortcut "${FULL_GAME_NAME}.lnk" $STEAMEXE \
-		'-applaunch ${APPID} -game "$INSTDIR"' "$ICONDIR\ex_installed.ico"
+	ReadRegStr $R0 HKCU "Software\Valve\Steam" SteamPath
+	SetOutPath "$R0\steamapps\common\Source SDK Base 2013 Multiplayer\"
+	IfFileExists "$R0\steamapps\common\Source SDK Base 2013 Multiplayer\hl2.exe" 0 +2
+	CreateShortcut "$DESKTOP\${PRODUCT_NAME}.lnk" "$R0\steamapps\common\Source SDK Base 2013 Multiplayer\hl2.exe" "-game $INSTDIR -steam" "$INSTDIR\resource\game.ico"	
+	Goto exitsection
+	CreateShortcut "$DESKTOP\${PRODUCT_NAME}.lnk" "$R0\steam.exe" "-applaunch ${APPID} -steam -game $INSTDIR" "$INSTDIR\resource\game.ico"
+exitsection:
 SectionEnd
 !endif
 Page custom Finish
@@ -200,13 +186,11 @@ Function Finish
   MessageBox MB_OK|MB_ICONEXCLAMATION "Steam must be restarted for the game to show on the games list."
 FunctionEnd
 Function .onInit
-	ReadRegStr $R0 HKLM "Software\Valve\Steam" InstallPath
+	ReadRegStr $R0 HKCU "Software\Valve\Steam" SteamPath
 	ReadRegStr $R1 HKCU "Software\Valve\Steam" SourceModInstallPath
 	IfErrors lbl_error 0
 	StrCpy $INSTDIR "$R1"
 !ifndef NO_DESKTOP_ICON
-	StrCpy $ICONDIR "$R0\steam\games"
-	SectionSetFlags ${SHORTCUT} 0
 	StrCpy $STEAMEXE "$R0\steam.exe"
 !endif
 	SectionSetFlags ${FILES} 17
