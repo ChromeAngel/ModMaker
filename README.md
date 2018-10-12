@@ -30,7 +30,7 @@ If you just want to download a pre-compiled version, the latest stable build is 
 MM is developed in C# using Visual Studio 2015.  The soloution (ModMaker.sln) contains 2 main projects and some offshoots:
 
 * LibModMaker - Contains abstract classes that encode the behaviour and structures of Steam, Source Games, Source Mods, Source File Systems and KeyValue files.
-* ModMaker - The winforms user interface, thank makes use of LibModMaker and is rooted in its main form and the ModView control.  This project contains many Tool classess, that impliment the iTool interface and provide stand -alone features, like setting up the SDK, launching hammer or scripting chapters.
+* ModMaker - The winforms user interface, that makes use of LibModMaker and is rooted in its main form and the ModView control.  This project contains many Tool classess, that impliment the iTool interface and provide stand -alone features, like setting up the SDK, launching hammer or scripting chapters.
 * WarHammmer - A standalone app that uses LibModMaker to configure and launch the SDK and Hammer to enable an easier start to mapping for a specific mod.
 * ModMakerTests - Some basic experimentation with automated testing and samples of various file formats.
 
