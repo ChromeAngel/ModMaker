@@ -41,18 +41,17 @@ namespace ModMaker
             if (e.msg.StartsWith("Downloaded"))
             {
                 ProgressDownload.Value = e.percent;
+                lblConfigured.Text = e.msg;
+                return;
             }
-            else
+
+            if (e.msg.StartsWith("Extracted"))
             {
-                if (e.msg.StartsWith("Extracted"))
-                {
-                    ProgressUnzip.Value = e.percent;
-                }
-                else
-                {
-                    lblConfigured.Text = e.msg;
-                }
+                ProgressUnzip.Value = e.percent;
+                return;
             }
+
+            lblConfigured.Text = e.msg;
         }
 
         private void Wizard_Finished(object sender, string folder)

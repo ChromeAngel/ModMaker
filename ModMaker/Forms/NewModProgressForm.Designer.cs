@@ -94,7 +94,7 @@
             this.Label3.Name = "Label3";
             this.Label3.Size = new System.Drawing.Size(108, 37);
             this.Label3.TabIndex = 3;
-            this.Label3.Text = "Configured";
+            this.Label3.Text = "Progress";
             this.Label3.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // Label2
@@ -128,7 +128,7 @@
             this.lblConfigured.Name = "lblConfigured";
             this.lblConfigured.Size = new System.Drawing.Size(297, 22);
             this.lblConfigured.TabIndex = 2;
-            this.lblConfigured.Text = "Waiting...";
+            this.lblConfigured.Text = "Waiting for GitHub...";
             // 
             // Panel2
             // 
@@ -168,7 +168,7 @@
             this.ProgressDownload.Size = new System.Drawing.Size(297, 28);
             this.ProgressDownload.TabIndex = 0;
             // 
-            // frmNewModProgress
+            // NewModProgressForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -177,7 +177,7 @@
             this.Controls.Add(this.TitleLabel);
             this.Cursor = System.Windows.Forms.Cursors.WaitCursor;
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "frmNewModProgress";
+            this.Name = "NewModProgressForm";
             this.Padding = new System.Windows.Forms.Padding(9);
             this.Text = "Making New Mod - Mod Maker";
             this.SplitContainer1.Panel1.ResumeLayout(false);

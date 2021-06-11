@@ -110,6 +110,7 @@ namespace ModMaker
 
             //download the zip from github
             ZipPath = Path.Combine(Dialog.SourcePath, "source-sdk-2013-master.zip");
+
             Downloader.DownloadFileAsync(new Uri(Resources.SDK_2013_URL), ZipPath);
 
             if (Progress != null)
@@ -179,14 +180,35 @@ namespace ModMaker
 
         private void Downloader_DownloadProgressChanged(object sender, System.Net.DownloadProgressChangedEventArgs e)
         {
-            if (Progress != null)
+            if (Progress == null)
+                return;
+            
+            Progress(this, new ProgressEventArgs
             {
-                Progress(this, new ProgressEventArgs
-                {
-                    msg = string.Format("Downloaded {0}%", e.ProgressPercentage),
-                    percent = e.ProgressPercentage
-                });
-            }
+                msg = string.Format("Downloaded {0}", FormatBytes(e.BytesReceived)),
+                percent = e.ProgressPercentage
+            });
+        }
+
+        private static string FormatBytes(long bytes)
+        {
+            if (bytes < 1024)
+                return $"{bytes} bytes";
+            bytes = bytes / 1024;
+            if (bytes < 1024)
+                return $"{bytes} KB";
+            bytes = bytes / 1024;
+            if (bytes < 1024)
+                return $"{bytes} MB";
+            bytes = bytes / 1024;
+            if (bytes < 1024)
+                return $"{bytes} GB";
+            bytes = bytes / 1024;
+            if (bytes < 1024)
+                return $"{bytes} TB";
+            bytes = bytes / 1024;
+
+            return $"{bytes} PB";
         }
 
         private void Unzipper_Extracting(object sender, SevenZip.ProgressEventArgs e)
