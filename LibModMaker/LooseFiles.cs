@@ -12,6 +12,11 @@ namespace LibModMaker
     {
         private string rootPath;
 
+        public string Name
+        {
+            get { return rootPath; }
+        }
+
         /// <summary>
         /// Open a specified folder to use as a mount point
         /// </summary>
@@ -144,6 +149,8 @@ namespace LibModMaker
         {
             var result = new FileSystemInfo() {Path = path, Mount = rootPath };
 
+            result.Mount = "LooseFiles (" + result.Mount + ")";
+
             string FullPath = Path.Combine(rootPath, path);
 
             if (File.Exists(FullPath))
@@ -235,7 +242,7 @@ namespace LibModMaker
 
             if (IsEmpty)
             {
-                result.Add(folderPath.Substring(rootOffSet));
+                result.Add( Path.DirectorySeparatorChar + folderPath.Substring(rootOffSet));
             }
         }//End InnerListing
 

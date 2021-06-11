@@ -84,7 +84,7 @@ namespace ModMaker
             this.Editor.Name = "Editor";
             this.Editor.Size = new System.Drawing.Size(505, 473);
             this.Editor.TabIndex = 1;
-            this.Editor.TextureData = ValveKey1;
+            this.Editor.TextureData = null;
             //
             //MenuStrip1
             //

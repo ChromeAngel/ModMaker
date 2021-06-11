@@ -66,11 +66,9 @@ namespace ModMaker
 
         private void btnEdit_Click(System.Object sender, System.EventArgs e)
         {
-            frmTextureData Dialog = new frmTextureData
-            {
-                Game = Game,
-                TextureData = _Data
-            };
+            frmTextureData Dialog = new frmTextureData();
+            Dialog.Game = Game;
+            Dialog.TextureData = _Data;
 
             if (Dialog.ShowDialog() != DialogResult.OK)
                 return;

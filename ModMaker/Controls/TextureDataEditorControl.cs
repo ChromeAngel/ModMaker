@@ -10,6 +10,11 @@ namespace ModMaker
     /// </summary>
     public partial class TextureDataEditorControl
     {
+        public TextureDataEditorControl()
+        {
+            InitializeComponent();
+        }
+
         private KeyValues _TextureData;
         public SourceMod Game { get; set; }
 

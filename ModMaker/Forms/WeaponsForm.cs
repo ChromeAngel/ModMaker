@@ -229,6 +229,9 @@ namespace ModMaker
         private void frmWeapons_FormClosing(object sender, System.Windows.Forms.FormClosingEventArgs e)
         {
             SaveChanges();
+
+            if (WeaponKeys == null) return;
+
             WeaponKeys.Save();
         }
 

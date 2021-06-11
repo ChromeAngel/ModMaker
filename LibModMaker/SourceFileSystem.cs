@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Diagnostics;
 
 namespace LibModMaker
 {
@@ -156,7 +157,27 @@ namespace LibModMaker
                 foreach (var file in files)
                 {
                     if (!result.Contains(file))
+                    {
                         result.Add(file);
+
+                        if(!mount.Contains(file))
+                        {
+                            if(mount.GetType().Name == "Package")
+                            {
+                                var P = mount as Package;
+                                Debug.WriteLine(string.Format("Package {0} disowns {1}", P.Name, file));
+                            } else if (mount.GetType().Name == "LooseFiles")
+                            {
+                                var P = mount as LooseFiles;
+                                Debug.WriteLine(string.Format("LooseFiles {0} disowns {1}", P.Name, file));
+                            }
+                            else
+                            {
+                                Debug.WriteLine(string.Format("{0} disowns {1}", mount.GetType().Name, file));
+                            }
+                        }
+                    }
+                        
                 }
             }
 
@@ -183,13 +204,19 @@ namespace LibModMaker
 
         public FileSystemInfo GetInfo(string path)
         {
-            var result = new FileSystemInfo();
+            var result = new FileSystemInfo() { Path = path, Mount = "Unknown" };
 
             foreach (var mount in mounts)
             {
                 if (mount.Contains(path))
                 {
-                    return mount.GetInfo(path);
+                    result = mount.GetInfo(path);
+                    if(string.IsNullOrEmpty(result.Mount))
+                    {
+                        result.Mount = mount.GetType().Name;
+                    }
+
+                    return result;
                 }
             }
 

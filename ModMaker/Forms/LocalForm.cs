@@ -45,7 +45,6 @@ namespace ModMaker
             cboLangugae.SelectedItem = "English";
         }
 
-        // ERROR: Handles clauses are not supported in C#
         private void frmLocal_Load(object sender, System.EventArgs e)
         {
             if (string.IsNullOrEmpty(GameDir))
@@ -70,7 +69,6 @@ namespace ModMaker
             LoadFile(DefaultFile);
         }
 
-        // ERROR: Handles clauses are not supported in C#
         private void mnuNewFile_Click(System.Object sender, System.EventArgs e)
         {
             var Dialog = new OpenFileDialog
@@ -107,7 +105,6 @@ namespace ModMaker
             ListTokens.ResumeLayout();
         }
 
-        // ERROR: Handles clauses are not supported in C#
         private void mnuOpenFile_Click(object sender, System.EventArgs e)
         {
             OpenFileDialog Dialog = new OpenFileDialog
@@ -164,7 +161,6 @@ namespace ModMaker
             }
         }
 
-        // ERROR: Handles clauses are not supported in C#
         private void mnuSaveAs_Click(object sender, System.EventArgs e)
         {
             SaveFileDialog Dialog = new SaveFileDialog
@@ -197,13 +193,11 @@ namespace ModMaker
             FileName = Dialog.FileName;
         }
 
-        // ERROR: Handles clauses are not supported in C#
         private void ListTokens_SelectedIndexChanged(System.Object sender, System.EventArgs e)
         {
             SelectToken(ListTokens.SelectedItem.ToString());
         }
 
-        // ERROR: Handles clauses are not supported in C#
         private void mnuNewTaken_Click(System.Object sender, System.EventArgs e)
         {
             string TokenName = Interaction.InputBox("Please enter the new token name", "New Token");
@@ -214,7 +208,6 @@ namespace ModMaker
             AddToken(TokenName);
         }
 
-        // ERROR: Handles clauses are not supported in C#
         private void btnAdd_Click(System.Object sender, System.EventArgs e)
         {
             string TokenName = txtFilter.Text;
@@ -254,9 +247,10 @@ namespace ModMaker
             }
             else
             {
-                if (Tokens.ContainsKey("[english]" + SelectedToken))
+                string tokenName = "[english]" + SelectedToken;
+                if (Tokens.ContainsKey(tokenName))
                 {
-                    txtEnglish.Text = DecodeNewLines(Tokens["[english]"] + SelectedToken);
+                    txtEnglish.Text = DecodeNewLines(tokenName);
                 }
                 else
                 {
@@ -279,7 +273,6 @@ namespace ModMaker
                 Tokens["[english]" + SelectedToken] = EncodeNewLines(txtEnglish.Text);
             }
         }
-
         string DecodeNewLines(string Escaped)
         {
             return Escaped.Replace("\\n", Environment.NewLine);
@@ -290,23 +283,20 @@ namespace ModMaker
             return Clear.Replace(Environment.NewLine, "\\n");
         }
 
-        // ERROR: Handles clauses are not supported in C#
         private void mnuDeleteToken_Click(System.Object sender, System.EventArgs e)
         {
             Tokens.Remove(SelectedToken);
             RefreshList();
         }
 
-        // ERROR: Handles clauses are not supported in C#
         private void mnuHelp_Click(System.Object sender, System.EventArgs e)
         {
             Interaction.MsgBox("Source mod will automatically load translations from resources/<gamename>_<language>.txt\r\n\r\n" +
-                "This editor is intended to help you translate your english text into other localities.string\r\n\r\n" + 
+                "This editor is intended to help you translate your english text into other localities.\r\n\r\n" + 
                 "The tokens which appear in your the source code are listed on the left and the translation of the selected token that is displayed to the player appears on the right.", 
                 MsgBoxStyle.Information, "Help - Localization");
         }
 
-        // ERROR: Handles clauses are not supported in C#
         private void mnuExit_Click(System.Object sender, System.EventArgs e)
         {
             Close();

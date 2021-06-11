@@ -77,6 +77,11 @@ namespace LibModMaker
             RootNode = new FolderNode(HLLib.hlPackageGetRoot());
         }
 
+        public string Name
+        {
+            get { return Mount; }
+        }
+
 
         private class PackageSystemNode
         {
@@ -111,7 +116,15 @@ namespace LibModMaker
                 {
                     if (Parent == null) return "";
 
-                    return Parent.FullPath + Path.DirectorySeparatorChar + Name;
+                    string parentPath = Parent.FullPath;
+
+                    if (string.IsNullOrEmpty(parentPath))
+                    {
+                        return Name;
+                    } else {
+                        return parentPath + Path.DirectorySeparatorChar + Name;
+                    }
+                    
                 }
             }
         }
@@ -216,8 +229,12 @@ namespace LibModMaker
 
         public bool Contains(string path)
         {
-            if (!IsPackageOpen) return false;
-            if (string.IsNullOrEmpty(path)) return false;
+            if (!IsPackageOpen)
+                return false;
+            if (string.IsNullOrEmpty(path))
+                return false;
+
+            //path = path.TrimStart(Path.DirectorySeparatorChar);
 
             string[] nodes = path.Split(Path.DirectorySeparatorChar);
             PackageSystemNode found = RootNode.Find(nodes, 0);
@@ -235,6 +252,8 @@ namespace LibModMaker
         {
             if (!IsPackageOpen) return false;
             if (string.IsNullOrEmpty(path)) return false;
+
+            path = path.TrimStart(Path.DirectorySeparatorChar);
 
             string[] nodes = path.Split(Path.DirectorySeparatorChar);
             PackageSystemNode found = RootNode.Find(nodes, 0);
@@ -317,7 +336,9 @@ namespace LibModMaker
 
         public FileSystemInfo GetInfo(string path)
         {
-            var result = new FileSystemInfo() {Path = path, Mount = Mount};
+            var result = new FileSystemInfo() {Path = path, Mount = this.Mount};
+
+            result.Mount = "Package (" + result.Mount + ")";
 
             if (!IsPackageOpen) return result;
             if (string.IsNullOrEmpty(path)) return result;

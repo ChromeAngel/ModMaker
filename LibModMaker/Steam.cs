@@ -245,7 +245,22 @@ namespace LibModMaker
                     if (Manifest == null)
                         continue;
 
-                    Result.Add(Manifest.GetInt("appID"), Path.Combine(CommonFolder, Manifest.GetString("InstallDir")));
+                    int appID = Manifest.GetInt("appID");
+                    string installPath = Path.Combine(CommonFolder, Manifest.GetString("InstallDir"));
+
+                    if (appID == 0 || string.IsNullOrEmpty(installPath))
+                        continue;
+
+                    if (Result.ContainsKey(appID))
+                    {
+                        Debug.WriteLine("Multiple installations of app #{0} found at {1} and {2}", appID, Result[appID], installPath);
+                        Result[appID] = installPath;
+                    } else
+                    {
+                        Result.Add(appID, installPath);
+                    }
+
+                    
                 }
 
                 InstallFolderIndex += 1;

@@ -7,16 +7,46 @@ namespace ModMaker
 
     public partial class frmTextureData
     {
+        public frmTextureData()
+        {
+            InitializeComponent();
+        }
+
         public SourceMod Game
         {
-            get { return Editor.Game; }
-            set { Editor.Game = value; }
+            get {
+                if (Editor == null)
+                {
+                    return null;
+                } else {
+                    return Editor.Game;
+                }
+            }
+            set {
+                if (Editor == null) return;
+
+                Editor.Game = value;
+            }
         }
 
         public KeyValues TextureData
         {
-            get { return Editor.TextureData; }
-            set { Editor.TextureData = value; }
+            get {
+                if (Editor == null)
+                {
+                    return null;
+                }
+                else
+                {
+                    return Editor.TextureData;
+                }
+                
+            }
+            set {
+                if (Editor == null) return;
+
+                Editor.TextureData = value;
+            }
         }
 
         // ERROR: Handles clauses are not supported in C#

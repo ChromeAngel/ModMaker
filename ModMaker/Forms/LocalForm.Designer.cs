@@ -98,6 +98,7 @@
             this.ListTokens.Name = "ListTokens";
             this.ListTokens.Size = new System.Drawing.Size(200, 396);
             this.ListTokens.TabIndex = 0;
+            this.ListTokens.SelectedIndexChanged += new System.EventHandler(this.ListTokens_SelectedIndexChanged);
             // 
             // Panel1
             // 
@@ -216,37 +217,41 @@
             this.ToolStripMenuItem1,
             this.mnuExit});
             this.mnuFile.Name = "mnuFile";
-            this.mnuFile.Size = new System.Drawing.Size(44, 28);
+            this.mnuFile.Size = new System.Drawing.Size(46, 28);
             this.mnuFile.Text = "&File";
+            this.mnuFile.Click += new System.EventHandler(this.mnuNewFile_Click);
             // 
             // mnuNewFile
             // 
             this.mnuNewFile.Name = "mnuNewFile";
-            this.mnuNewFile.Size = new System.Drawing.Size(135, 26);
+            this.mnuNewFile.Size = new System.Drawing.Size(143, 26);
             this.mnuNewFile.Text = "&New";
             // 
             // mnuOpenFile
             // 
             this.mnuOpenFile.Name = "mnuOpenFile";
-            this.mnuOpenFile.Size = new System.Drawing.Size(135, 26);
+            this.mnuOpenFile.Size = new System.Drawing.Size(224, 26);
             this.mnuOpenFile.Text = "&Load";
+            this.mnuOpenFile.Click += new System.EventHandler(this.mnuOpenFile_Click);
             // 
             // mnuSaveAs
             // 
             this.mnuSaveAs.Name = "mnuSaveAs";
-            this.mnuSaveAs.Size = new System.Drawing.Size(135, 26);
+            this.mnuSaveAs.Size = new System.Drawing.Size(224, 26);
             this.mnuSaveAs.Text = "Save &As";
+            this.mnuSaveAs.Click += new System.EventHandler(this.mnuSaveAs_Click);
             // 
             // ToolStripMenuItem1
             // 
             this.ToolStripMenuItem1.Name = "ToolStripMenuItem1";
-            this.ToolStripMenuItem1.Size = new System.Drawing.Size(132, 6);
+            this.ToolStripMenuItem1.Size = new System.Drawing.Size(140, 6);
             // 
             // mnuExit
             // 
             this.mnuExit.Name = "mnuExit";
-            this.mnuExit.Size = new System.Drawing.Size(135, 26);
+            this.mnuExit.Size = new System.Drawing.Size(224, 26);
             this.mnuExit.Text = "E&xit";
+            this.mnuExit.Click += new System.EventHandler(this.mnuExit_Click);
             // 
             // mnuTokens
             // 
@@ -254,25 +259,27 @@
             this.mnuNewTaken,
             this.mnuDeleteToken});
             this.mnuTokens.Name = "mnuTokens";
-            this.mnuTokens.Size = new System.Drawing.Size(67, 28);
+            this.mnuTokens.Size = new System.Drawing.Size(69, 28);
             this.mnuTokens.Text = "&Tokens";
             // 
             // mnuNewTaken
             // 
             this.mnuNewTaken.Name = "mnuNewTaken";
-            this.mnuNewTaken.Size = new System.Drawing.Size(128, 26);
+            this.mnuNewTaken.Size = new System.Drawing.Size(224, 26);
             this.mnuNewTaken.Text = "&New";
+            this.mnuNewTaken.Click += new System.EventHandler(this.mnuNewTaken_Click);
             // 
             // mnuDeleteToken
             // 
             this.mnuDeleteToken.Name = "mnuDeleteToken";
-            this.mnuDeleteToken.Size = new System.Drawing.Size(128, 26);
+            this.mnuDeleteToken.Size = new System.Drawing.Size(224, 26);
             this.mnuDeleteToken.Text = "&Delete";
+            this.mnuDeleteToken.Click += new System.EventHandler(this.mnuDeleteToken_Click);
             // 
             // LanguageToolStripMenuItem
             // 
             this.LanguageToolStripMenuItem.Name = "LanguageToolStripMenuItem";
-            this.LanguageToolStripMenuItem.Size = new System.Drawing.Size(86, 28);
+            this.LanguageToolStripMenuItem.Size = new System.Drawing.Size(88, 28);
             this.LanguageToolStripMenuItem.Text = "Language";
             // 
             // cboLangugae
@@ -292,8 +299,9 @@
             this.mnuHelp.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.mnuHelp.Name = "mnuHelp";
             this.mnuHelp.ShortcutKeys = System.Windows.Forms.Keys.F1;
-            this.mnuHelp.Size = new System.Drawing.Size(53, 28);
+            this.mnuHelp.Size = new System.Drawing.Size(55, 28);
             this.mnuHelp.Text = "&Help";
+            this.mnuHelp.Click += new System.EventHandler(this.mnuHelp_Click);
             // 
             // LocalForm
             // 
@@ -305,6 +313,7 @@
             this.MainMenuStrip = this.MenuStrip1;
             this.Name = "LocalForm";
             this.Text = "Localization";
+            this.Load += new System.EventHandler(this.frmLocal_Load);
             this.SplitTokens.Panel1.ResumeLayout(false);
             this.SplitTokens.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.SplitTokens)).EndInit();

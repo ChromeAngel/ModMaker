@@ -443,6 +443,9 @@ namespace LibModMaker
 
 	public string BaseClassRead(string CommandLine, FGDReader Source, EntityDef.EntityTypes EntityType)
 	{
+        if (string.IsNullOrEmpty(CommandLine)) return null;
+
+
 		EntityDef Result = new EntityDef();
 		string[] Bits = SplitNTrim(CommandLine, '=');
 
@@ -462,6 +465,8 @@ namespace LibModMaker
 
 		ParseWidgets(Bits[0], Result);
 
+            if (Source == null) return null;
+
 		string Line = Source.ReadLine();
 
 		if (Line == null) return null;
@@ -471,7 +476,15 @@ namespace LibModMaker
 		while (!Line.StartsWith("["))
         {
 			Result.Comment = Result.Comment + Line.Trim('"');
-			Line = Source.ReadLine().Trim();
+
+            //this does not handle single line class defintions like this..
+            //@PointClass base(Weapon) studio("models/weapons/w_smg1.mdl") = weapon_smg3 : "" []
+
+            Line = Source.ReadLine();
+
+            if (Line == null) return null;
+
+            Line = Line.Trim();
 		}
 
 		Line = Source.ReadLine();

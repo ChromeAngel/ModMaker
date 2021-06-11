@@ -69,7 +69,7 @@ namespace ModMaker
             this.TableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TableLayoutPanel.ForeColor = System.Drawing.Color.White;
             this.TableLayoutPanel.Location = new System.Drawing.Point(12, 11);
-            this.TableLayoutPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.TableLayoutPanel.Margin = new System.Windows.Forms.Padding(4);
             this.TableLayoutPanel.Name = "TableLayoutPanel";
             this.TableLayoutPanel.RowCount = 6;
             this.TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
@@ -131,10 +131,10 @@ namespace ModMaker
             // 
             // TextBoxDescription
             // 
-            this.TextBoxDescription.BackColor = System.Drawing.Color.Black;
+            this.TextBoxDescription.BackColor = System.Drawing.SystemColors.Window;
             this.TextBoxDescription.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TextBoxDescription.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TextBoxDescription.ForeColor = System.Drawing.Color.White;
+            this.TextBoxDescription.ForeColor = System.Drawing.SystemColors.WindowText;
             this.TextBoxDescription.Location = new System.Drawing.Point(182, 128);
             this.TextBoxDescription.Margin = new System.Windows.Forms.Padding(8, 4, 4, 4);
             this.TextBoxDescription.Multiline = true;
@@ -151,7 +151,7 @@ namespace ModMaker
             this.OKButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.OKButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.OKButton.Location = new System.Drawing.Point(424, 287);
-            this.OKButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.OKButton.Margin = new System.Windows.Forms.Padding(4);
             this.OKButton.Name = "OKButton";
             this.OKButton.Size = new System.Drawing.Size(100, 27);
             this.OKButton.TabIndex = 0;
@@ -160,6 +160,8 @@ namespace ModMaker
             // PictureBox1
             // 
             this.PictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.PictureBox1.Image = global::ModMaker.Properties.Resources.ModMaker128;
+            this.PictureBox1.InitialImage = global::ModMaker.Properties.Resources.ModMaker128;
             this.PictureBox1.Location = new System.Drawing.Point(35, 34);
             this.PictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.PictureBox1.Name = "PictureBox1";
@@ -171,12 +173,13 @@ namespace ModMaker
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Black;
             this.CancelButton = this.OKButton;
             this.ClientSize = new System.Drawing.Size(552, 340);
             this.Controls.Add(this.PictureBox1);
             this.Controls.Add(this.TableLayoutPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "AboutForm";
