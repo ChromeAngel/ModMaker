@@ -121,14 +121,14 @@ namespace ModMaker
             {
                 DefaultMod = SourceFileSystem.FormatFolderPath(DefaultMod);
 
-                if (!Directory.Exists(DefaultMod))
-                {
-                    MessageBox.Show("VProject " + DefaultMod + " folder not found.", "ModMaker Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
+                if (Directory.Exists(DefaultMod))
                 {
                     if (ShowMod(DefaultMod))
                         return;
+                } else
+                {
+                    Environment.SetEnvironmentVariable("VProject", "", EnvironmentVariableTarget.User);
+                    DefaultMod = null;
                 }
             }
 
@@ -441,21 +441,7 @@ namespace ModMaker
             ModList.BackgroundImage = Buffer;
         }
 
-        /// <summary>
-        /// Menu item for testing code
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        /// <remarks>should be hidden in releases</remarks>
-        private void ToolStripButton1_Click(System.Object sender, System.EventArgs e)
-        {
-            //Using Converter As New LibModMaker.VTFConverter
-            //    Dim X As New Form
 
-            //    X.BackgroundImage = Converter.ToBitmap("G:\Steam\steamapps\SourceMods\Spherical Nightmares\materials\billboard\billboard1.vtf")
-            //    X.Show()
-            //End Using
-        }
 
         /// <summary>
         /// File->Exit menu item , close the form and end the program
@@ -480,6 +466,41 @@ namespace ModMaker
 
             ModOptions.Save(ModsFilePath);
         }
+
+        /// <summary>
+        /// Menu item for testing code
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <remarks>should be hidden in releases</remarks>
+        private void ToolStripButton1_Click(System.Object sender, System.EventArgs e)
+        {
+            //Using Converter As New LibModMaker.VTFConverter
+            //    Dim X As New Form
+
+            //    X.BackgroundImage = Converter.ToBitmap("G:\Steam\steamapps\SourceMods\Spherical Nightmares\materials\billboard\billboard1.vtf")
+            //    X.Show()
+            //End Using
+        }
+
+        //private void ToolStripButton1_Click_1(object sender, EventArgs e)
+        //{
+        //    SourceFileSystem sfs = new SourceFileSystem(ModView1.Value);
+
+        //    var files = sfs.Listing();
+
+        //    using (var fs = new StreamWriter("X:\\EX_Filesystem.txt"))
+        //    {
+        //        foreach (string path in files)
+        //        {
+        //            var info = sfs.GetInfo(path);
+        //            fs.WriteLine(string.Format("{0}\t{1}\t{2}", path, info.Size, info.Mount));
+        //        }
+        //    }
+
+        //    Debug.WriteLine("Done");
+
+        //}
     }
 
 }

@@ -106,7 +106,7 @@ namespace ModMaker
                 }
 
                 //The "VProject" environment variable is referenced by some of the SDK tools and is used by ModMaker to determine the last mod viewed
-                Environment.SetEnvironmentVariable("VProject", value.InstallPath);
+                Environment.SetEnvironmentVariable("VProject", value.InstallPath, EnvironmentVariableTarget.User);
 
                 string MapsPath = Path.Combine(_Value.InstallPath, "maps");
 
