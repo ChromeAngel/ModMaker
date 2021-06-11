@@ -194,6 +194,16 @@ namespace ModMaker.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ModMaker128 {
+            get {
+                object obj = ResourceManager.GetObject("ModMaker128", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ;======DO NOT EDIT BEYOND THIS POINT======
         ///
         ///!ifdef ZIPDLL

@@ -54,9 +54,29 @@ namespace LibModMaker
             string TempFolder = VTFBinFolder.TrimEnd('\\');
             string ResultFile = Path.Combine(TempFolder, Path.GetFileNameWithoutExtension(FilePath) + ".png");
 
-            if (File.Exists(ResultFile)) File.Delete(ResultFile);
+            while (File.Exists(ResultFile))
+            {
+                try
+                {
+                    File.Delete(ResultFile);
+                }
+                catch(System.IO.IOException )
+                {
+                    //may be in-use by another process, try a different name
+                    ResultFile =Path.GetTempFileName() + ".png";
+                }
+            }
 
             ConversionStatus = 0;
+            
+            if (!Directory.Exists(VTFBinFolder))
+            {
+                Debug.WriteLine($"VTFBin folder not found, expected : {VTFBinFolder}");
+
+                return null;
+            }
+
+            string process_output;
 
             using (System.Diagnostics.Process VTFCmd = new System.Diagnostics.Process())
             {
@@ -73,23 +93,20 @@ namespace LibModMaker
 
                 VTFCmd.Start();
                 VTFCmd.WaitForExit();
-                string Ouptut = VTFCmd.StandardOutput.ReadToEnd();
 
-                Debug.WriteLine(Ouptut);
-
-                if (Ouptut.Contains("0/1 files completed"))
-                    ConversionStatus = 1;
-                if (Ouptut.Contains("1/1 files completed"))
-                    ConversionStatus = 2;
+                process_output = VTFCmd.StandardOutput.ReadToEnd();
             }
 
-            if (ConversionStatus != 2) return null;
-            //Failed
+            if (File.Exists(ResultFile))
+                TempFiles.Add(ResultFile);
 
-            TempFiles.Add(ResultFile);
+            Debug.WriteLine(process_output);
+
+            if (false == process_output.Contains("1/1 files completed"))
+                    return null; //Failed
 
             return new Bitmap(ResultFile);
-        }
+        } //end ToBitmap
 
         public string ToVTF(Bitmap Bitmap)
         {

@@ -57,7 +57,7 @@ namespace ModMaker
                             Bitmap ThummbailImage = ChapterTool.GetThumbnailBitmap(X.Thumbnail);
 
                             if (ThummbailImage != null) {
-                                ChapterImages.Images.Add(ThummbailImage);
+                                ChapterImages.Images.Add(X.Title,ThummbailImage);
                                 ChapterItem.ImageKey = X.Title;
                             }
                         }
@@ -133,7 +133,7 @@ namespace ModMaker
         {
             OpenFileDialog Dialog = new OpenFileDialog {
                 Title = "Select Thumbnail Image",
-                Filter = "Images (*.bmp;*.jpg;*.gif;*.png;*.tga)|*.bmp;*.jpg;*.gif;*.png;*.tga",
+                Filter = "Images (*.bmp;*.jpg;*.gif;*.png;*.tga;*.vtf)|*.bmp;*.jpg;*.gif;*.png;*.tga;*.vtf",
                 CheckFileExists = true
             };
 
@@ -200,8 +200,6 @@ namespace ModMaker
             OldChapter.Thumbnail = txtThumbnailPath.Text;
             ListChapters.Items[_SelectedChapter].Text = OldChapter.Title;
         }
-
-
     } //class
 
 }

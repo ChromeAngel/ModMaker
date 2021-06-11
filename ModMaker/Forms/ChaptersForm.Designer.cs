@@ -134,7 +134,7 @@
             // 
             this.SplitList.Panel2.Controls.Add(this.SplitProperties);
             this.SplitList.Size = new System.Drawing.Size(635, 321);
-            this.SplitList.SplitterDistance = 206;
+            this.SplitList.SplitterDistance = 205;
             this.SplitList.SplitterWidth = 5;
             this.SplitList.TabIndex = 1;
             this.SplitList.TabStop = false;
@@ -146,13 +146,15 @@
             this.ListChapters.BackColor = System.Drawing.Color.DimGray;
             this.ListChapters.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ListChapters.ForeColor = System.Drawing.Color.White;
+            this.ListChapters.HideSelection = false;
             this.ListChapters.LargeImageList = this.ChapterImages;
             this.ListChapters.Location = new System.Drawing.Point(0, 0);
             this.ListChapters.Margin = new System.Windows.Forms.Padding(4);
             this.ListChapters.MultiSelect = false;
             this.ListChapters.Name = "ListChapters";
+            this.ListChapters.Scrollable = false;
             this.ListChapters.ShowGroups = false;
-            this.ListChapters.Size = new System.Drawing.Size(635, 206);
+            this.ListChapters.Size = new System.Drawing.Size(635, 205);
             this.ListChapters.TabIndex = 2;
             this.ListChapters.TileSize = new System.Drawing.Size(200, 200);
             this.ListChapters.UseCompatibleStateImageBehavior = false;
@@ -176,7 +178,7 @@
             this.SplitProperties.Panel2.Controls.Add(this.Panel2);
             this.SplitProperties.Panel2.Controls.Add(this.Panel1);
             this.SplitProperties.Panel2.Padding = new System.Windows.Forms.Padding(0, 0, 8, 0);
-            this.SplitProperties.Size = new System.Drawing.Size(635, 110);
+            this.SplitProperties.Size = new System.Drawing.Size(635, 111);
             this.SplitProperties.SplitterDistance = 121;
             this.SplitProperties.SplitterWidth = 5;
             this.SplitProperties.TabIndex = 0;
@@ -279,6 +281,7 @@
             this.btnBrowseImage.TabIndex = 0;
             this.btnBrowseImage.Text = "Browse";
             this.btnBrowseImage.UseVisualStyleBackColor = true;
+            this.btnBrowseImage.Click += new System.EventHandler(this.btnBrowseImage_Click);
             // 
             // Panel1
             // 

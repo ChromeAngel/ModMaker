@@ -30,13 +30,19 @@ namespace ModMaker
         /// <returns>true if this tool is valid for the given game</returns>
         public bool IsValidForMod(LibModMaker.SourceMod Game)
         {
-            if (Game == null) return false;
+            if (Game == null) 
+                return false;
 
             KeyValues GameInfo = KeyValues.LoadFile(Game.GameInfoPath);
 
-            if (GameInfo == null) return false;
+            if (GameInfo == null) 
+                return false;
 
-            if (GameInfo.GetString("type") == "multiplayer_only") return false;
+            if (GameInfo.GetString("type") == "multiplayer_only") 
+                return false;
+
+            if (Game.SourcePath == null)
+                return false;
 
             return true;
         }
@@ -228,7 +234,8 @@ namespace ModMaker
                     Result.Title = Game.Localize(Result.TitleToken(Game));
                     Result.Thumbnail = Path.Combine(Game.InstallPath, "materials", "vgui", "chapters", string.Format("chapter{0}.vtf", Index));
 
-                    if (!File.Exists(Result.Thumbnail)) Result.Thumbnail = null;
+                    if (!File.Exists(Result.Thumbnail)) 
+                        Result.Thumbnail = null;
 
                     //get map from the config file
                     using (StreamReader CfgFile = new StreamReader(ConfigFilePath))
@@ -481,7 +488,7 @@ namespace ModMaker
 
             if (RawImage != null)
             {
-                Gfx.DrawImage(RawImage, ThumbnailImage.GetBounds(ref pixel));
+                Gfx.DrawImage(RawImage, ThumbnailImage.GetBounds(ref pixel), ThumbnailImage.GetBounds(ref pixel), GraphicsUnit.Pixel);
             }
 
             Gfx.Flush();
@@ -496,25 +503,29 @@ namespace ModMaker
         /// <returns>null for unknown file types</returns>
         public static Bitmap OpenBitmap(string FilePath)
         {
+            Bitmap result = null;
+
             switch (Path.GetExtension(FilePath))
             {
                 case ".tga":
-                    return Paloma.TargaImage.LoadTargaImage(FilePath);
+                    result = Paloma.TargaImage.LoadTargaImage(FilePath); break;
                 case ".vtf":
                     using (VTFConverter Converter = new VTFConverter())
                     {
-                        return Converter.ToBitmap(FilePath);
+                        result = Converter.ToBitmap(FilePath);
                     }
-
+                    break;
                 case ".bmp":
                 case ".jpg":
                 case ".png":
                 case ".gif":
-                    return new Bitmap(FilePath);
+                    result = new Bitmap(FilePath); break;
                 default:
-                    return null;
+                    result = null; break;
             }
-        }
+
+            return result;
+        } //end OpenBitmap
     }
 
 }

@@ -97,29 +97,29 @@
             // mnuFileNew
             // 
             this.mnuFileNew.Name = "mnuFileNew";
-            this.mnuFileNew.Size = new System.Drawing.Size(136, 26);
+            this.mnuFileNew.Size = new System.Drawing.Size(144, 26);
             this.mnuFileNew.Text = "&New";
             // 
             // ToolStripMenuItem3
             // 
             this.ToolStripMenuItem3.Name = "ToolStripMenuItem3";
-            this.ToolStripMenuItem3.Size = new System.Drawing.Size(133, 6);
+            this.ToolStripMenuItem3.Size = new System.Drawing.Size(141, 6);
             // 
             // OptionsToolStripMenuItem
             // 
             this.OptionsToolStripMenuItem.Name = "OptionsToolStripMenuItem";
-            this.OptionsToolStripMenuItem.Size = new System.Drawing.Size(136, 26);
+            this.OptionsToolStripMenuItem.Size = new System.Drawing.Size(144, 26);
             this.OptionsToolStripMenuItem.Text = "&Options";
             // 
             // ToolStripMenuItem1
             // 
             this.ToolStripMenuItem1.Name = "ToolStripMenuItem1";
-            this.ToolStripMenuItem1.Size = new System.Drawing.Size(133, 6);
+            this.ToolStripMenuItem1.Size = new System.Drawing.Size(141, 6);
             // 
             // mnuExit
             // 
             this.mnuExit.Name = "mnuExit";
-            this.mnuExit.Size = new System.Drawing.Size(136, 26);
+            this.mnuExit.Size = new System.Drawing.Size(144, 26);
             this.mnuExit.Text = "E&xit";
             // 
             // btnRefresh
@@ -157,7 +157,7 @@
             this.ValveDeveloperCommunityToolStripMenuItem.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ValveDeveloperCommunityToolStripMenuItem.ForeColor = System.Drawing.Color.Blue;
             this.ValveDeveloperCommunityToolStripMenuItem.Name = "ValveDeveloperCommunityToolStripMenuItem";
-            this.ValveDeveloperCommunityToolStripMenuItem.Size = new System.Drawing.Size(257, 26);
+            this.ValveDeveloperCommunityToolStripMenuItem.Size = new System.Drawing.Size(265, 26);
             this.ValveDeveloperCommunityToolStripMenuItem.Text = "Valve Developer Community";
             // 
             // QCCommandsVDCToolStripMenuItem
@@ -165,7 +165,7 @@
             this.QCCommandsVDCToolStripMenuItem.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Underline);
             this.QCCommandsVDCToolStripMenuItem.ForeColor = System.Drawing.Color.Blue;
             this.QCCommandsVDCToolStripMenuItem.Name = "QCCommandsVDCToolStripMenuItem";
-            this.QCCommandsVDCToolStripMenuItem.Size = new System.Drawing.Size(257, 26);
+            this.QCCommandsVDCToolStripMenuItem.Size = new System.Drawing.Size(265, 26);
             this.QCCommandsVDCToolStripMenuItem.Text = "QC Commands (VDC)";
             // 
             // SourceSDKDiscussionToolStripMenuItem
@@ -173,7 +173,7 @@
             this.SourceSDKDiscussionToolStripMenuItem.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Underline);
             this.SourceSDKDiscussionToolStripMenuItem.ForeColor = System.Drawing.Color.Blue;
             this.SourceSDKDiscussionToolStripMenuItem.Name = "SourceSDKDiscussionToolStripMenuItem";
-            this.SourceSDKDiscussionToolStripMenuItem.Size = new System.Drawing.Size(257, 26);
+            this.SourceSDKDiscussionToolStripMenuItem.Size = new System.Drawing.Size(265, 26);
             this.SourceSDKDiscussionToolStripMenuItem.Text = "Source SDK Discussion";
             // 
             // SourceModdingcomToolStripMenuItem
@@ -181,7 +181,7 @@
             this.SourceModdingcomToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SourceModdingcomToolStripMenuItem.ForeColor = System.Drawing.Color.Blue;
             this.SourceModdingcomToolStripMenuItem.Name = "SourceModdingcomToolStripMenuItem";
-            this.SourceModdingcomToolStripMenuItem.Size = new System.Drawing.Size(257, 26);
+            this.SourceModdingcomToolStripMenuItem.Size = new System.Drawing.Size(265, 26);
             this.SourceModdingcomToolStripMenuItem.Text = "SourceModding.com";
             // 
             // SteampoweredcomForumToolStripMenuItem
@@ -189,7 +189,7 @@
             this.SteampoweredcomForumToolStripMenuItem.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SteampoweredcomForumToolStripMenuItem.ForeColor = System.Drawing.Color.Blue;
             this.SteampoweredcomForumToolStripMenuItem.Name = "SteampoweredcomForumToolStripMenuItem";
-            this.SteampoweredcomForumToolStripMenuItem.Size = new System.Drawing.Size(257, 26);
+            this.SteampoweredcomForumToolStripMenuItem.Size = new System.Drawing.Size(265, 26);
             this.SteampoweredcomForumToolStripMenuItem.Text = "Steampowered.com Forum";
             // 
             // InterlopersnetToolStripMenuItem
@@ -197,29 +197,29 @@
             this.InterlopersnetToolStripMenuItem.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.InterlopersnetToolStripMenuItem.ForeColor = System.Drawing.Color.Blue;
             this.InterlopersnetToolStripMenuItem.Name = "InterlopersnetToolStripMenuItem";
-            this.InterlopersnetToolStripMenuItem.Size = new System.Drawing.Size(257, 26);
+            this.InterlopersnetToolStripMenuItem.Size = new System.Drawing.Size(265, 26);
             this.InterlopersnetToolStripMenuItem.Text = "Interlopers.net";
             // 
             // ToolStripMenuItem2
             // 
             this.ToolStripMenuItem2.Name = "ToolStripMenuItem2";
-            this.ToolStripMenuItem2.Size = new System.Drawing.Size(254, 6);
+            this.ToolStripMenuItem2.Size = new System.Drawing.Size(262, 6);
             // 
             // SteamInfoToolStripMenuItem
             // 
             this.SteamInfoToolStripMenuItem.Name = "SteamInfoToolStripMenuItem";
-            this.SteamInfoToolStripMenuItem.Size = new System.Drawing.Size(257, 26);
+            this.SteamInfoToolStripMenuItem.Size = new System.Drawing.Size(265, 26);
             this.SteamInfoToolStripMenuItem.Text = "Steam Info";
             // 
             // ToolStripMenuItem4
             // 
             this.ToolStripMenuItem4.Name = "ToolStripMenuItem4";
-            this.ToolStripMenuItem4.Size = new System.Drawing.Size(254, 6);
+            this.ToolStripMenuItem4.Size = new System.Drawing.Size(262, 6);
             // 
             // AboutToolStripMenuItem
             // 
             this.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem";
-            this.AboutToolStripMenuItem.Size = new System.Drawing.Size(257, 26);
+            this.AboutToolStripMenuItem.Size = new System.Drawing.Size(265, 26);
             this.AboutToolStripMenuItem.Text = "About";
             // 
             // ToolStripButton1
@@ -230,6 +230,7 @@
             this.ToolStripButton1.Size = new System.Drawing.Size(40, 24);
             this.ToolStripButton1.Text = "Test";
             this.ToolStripButton1.Visible = false;
+            //this.ToolStripButton1.Click += new System.EventHandler(this.ToolStripButton1_Click_1);
             // 
             // ModIcons
             // 
@@ -242,7 +243,7 @@
             this.ExplorerSplit.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ExplorerSplit.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
             this.ExplorerSplit.Location = new System.Drawing.Point(0, 27);
-            this.ExplorerSplit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ExplorerSplit.Margin = new System.Windows.Forms.Padding(4);
             this.ExplorerSplit.Name = "ExplorerSplit";
             this.ExplorerSplit.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -269,7 +270,7 @@
             this.ModList.LabelWrap = false;
             this.ModList.LargeImageList = this.ModIcons;
             this.ModList.Location = new System.Drawing.Point(0, 0);
-            this.ModList.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ModList.Margin = new System.Windows.Forms.Padding(4);
             this.ModList.MultiSelect = false;
             this.ModList.Name = "ModList";
             this.ModList.ShowGroups = false;
@@ -288,7 +289,7 @@
             this.ModView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ModView1.ForeColor = System.Drawing.SystemColors.ControlText;
             this.ModView1.Location = new System.Drawing.Point(0, 0);
-            this.ModView1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.ModView1.Margin = new System.Windows.Forms.Padding(5);
             this.ModView1.Name = "ModView1";
             this.ModView1.Options = keyValues1;
             this.ModView1.Padding = new System.Windows.Forms.Padding(5, 0, 5, 5);
@@ -306,7 +307,7 @@
             this.Controls.Add(this.ExplorerSplit);
             this.Controls.Add(this.ToolStrip1);
             this.KeyPreview = true;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MainForm";
             this.Text = "Mod Maker";
             this.ToolStrip1.ResumeLayout(false);

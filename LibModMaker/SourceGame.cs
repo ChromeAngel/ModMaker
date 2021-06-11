@@ -722,20 +722,35 @@ namespace LibModMaker
                 {
                     //load this game's multiplayer localization file
                     LanguageFilePath = Steam.AppPath(AppId);
-                    LanguageFilePath = Path.Combine(LanguageFilePath, "hl2mp");
-                    LanguageFilePath = Path.Combine(LanguageFilePath, "resource");
-                    LanguageFilePath = Path.Combine(LanguageFilePath, "Valve_" + Language + ".txt");
-                    _Localization.Add(LanguageFilePath);
+
+                    if(LanguageFilePath == null)
+                    {
+                        Debug.WriteLine($"Invalid/unknwon Steam App ID {AppId}");
+                    } else
+                    {
+                        LanguageFilePath = Path.Combine(LanguageFilePath, "hl2mp", "resource", "Valve_" + Language + ".txt");
+                        _Localization.Add(LanguageFilePath);
+                    }
                 }
 
                 if (_GameInfo.GetKey("multiplayer_only") == null)
                 {
                     //load this game's singleplayer localization file
                     LanguageFilePath = Steam.AppPath(AppId);
-                    LanguageFilePath = Path.Combine(LanguageFilePath, "hl2");
-                    LanguageFilePath = Path.Combine(LanguageFilePath, "resource");
-                    LanguageFilePath = Path.Combine(LanguageFilePath, "Valve_" + Language + ".txt");
-                    _Localization.Add(LanguageFilePath);
+
+
+                    if (LanguageFilePath == null)
+                    {
+                        Debug.WriteLine($"Invalid/unknwon Steam App ID {AppId}");
+                    }
+                    else
+                    {
+                        LanguageFilePath = Path.Combine(LanguageFilePath, "hl2", "resource", "Valve_" + Language + ".txt");
+
+                        _Localization.Add(LanguageFilePath);
+                    }
+
+
                 }
             }
 
